@@ -7,19 +7,19 @@
         android:key="busstart_alarm"
         android:defaultValue="false"
         android:summary="알람 발송 여부 on/off"
-        android:title="체크박스 : 체크상태일 경우 스쿨버스 출발 시 알람을 발송합니다 "
+        android:title="체크상태일 경우 스쿨버스 출발 시 알람을 발송합니다 "
         />
     <SwitchPreference
         android:key="childrenstate_mode"
         android:defaultValue="false"
         android:summary="자녀 승하차의 알림을 on/off"
-        android:title="스위치 : 자녀 승하차 알림"
+        android:title="자녀 승하차 알림"
         />
     <SwitchPreference
         android:key="notice_alarm"
         android:defaultValue="false"
         android:summary="공지사항의 알림을 on/off"
-        android:title="스위치 : 공지사항 알림"
+        android:title="공지사항 알림"
         />
     </PreferenceCategory>
 
@@ -35,7 +35,7 @@
         <EditTextPreference
             android:title="앱정보"
             android:summary="통합 안전 관제 시스템을 만들었어요"
-            android:defaultValue="test"
+            android:defaultValue="통합안전관제시스템"
             android:key="backup"/>
 
     </PreferenceCategory>

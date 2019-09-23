@@ -26,17 +26,10 @@ public class ActSettings extends PreferenceActivity {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.preferences);
 
-            SharedPreferences prefs;
-            prefs = PreferenceManager.getDefaultSharedPreferences(this);
-            prefs
-                    .registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
-                        public void onSharedPreferenceChanged(SharedPreferences sp, String key) {
-                            Log.d("tag","클릭된 Preference의 key는 "+key);
+
                         }
-                    });
-        }
         }
     }
 
 
-    }
+
