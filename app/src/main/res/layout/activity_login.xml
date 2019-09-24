@@ -50,4 +50,13 @@
         android:layout_marginTop="30dp"
         android:text="자동 로그인" />
 
+    <Button
+        android:id="@+id/loginrealBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/투명Button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="400dp"
+        android:text="로그인" />
+
 </RelativeLayout>

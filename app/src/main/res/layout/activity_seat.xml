@@ -87,6 +87,7 @@
             android:layout_height="match_parent"
             android:textColor="#fff"
             android:layout_centerInParent="true"
+            android:layout_marginEnd="8dp"
             android:padding="2px"
             android:radius="4dp"
             android:text="뒤로가기" />
@@ -98,6 +99,7 @@
             android:layout_height="match_parent"
             android:textColor="#fff"
             android:layout_centerInParent="true"
+            android:layout_marginEnd="8dp"
             android:padding="2px"
             android:radius="4dp"
             android:text="" />
@@ -109,6 +111,7 @@
             android:layout_height="match_parent"
             android:textColor="#fff"
             android:layout_centerInParent="true"
+            android:layout_marginEnd="8dp"
             android:padding="2px"
             android:radius="4dp"
             android:text="" />
@@ -120,6 +123,7 @@
             android:layout_height="match_parent"
             android:textColor="#fff"
             android:layout_centerInParent="true"
+            android:layout_marginEnd="8dp"
             android:padding="2px"
             android:radius="4dp"
             android:text="" />

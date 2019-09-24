@@ -2,26 +2,99 @@
 <LinearLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+
     xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <FrameLayout
+        android:id="@+id/busarea"
+        android:layout_width="match_parent"
+        android:layout_height="1400px"
+        android:background="@drawable/safebus">
+
+
+        <Button
+            android:id="@+id/button31"
+            android:layout_width="280dp"
+            android:layout_height="350dp"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:background="@color/투명Button"
+            android:text="운행 준비중입니다"
+            android:textSize="22dp" />
+
+        <Button
+            android:id="@+id/settingloginBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|right"
+            android:layout_marginRight="90dp"
+            android:background="@color/투명Button"
+            android:text="회원가입" />
+
+        <Button
+            android:id="@+id/loginBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|right"
+            android:background="@color/투명Button"
+            android:text="로그인" />
+
+
+    </FrameLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:id="@+id/keywordEditText"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="환경설정"
-            android:id="@+id/settingBtn"/>
-    </LinearLayout>
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/bookListView">
 
-    </ListView>
+
+        <Button
+            android:id="@+id/seatBtn"
+            android:background="@color/Button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="#fff"
+            android:layout_centerInParent="true"
+            android:padding="2px"
+            android:layout_marginEnd="8dp"
+            android:radius="4dp"
+            android:text="죄석" />
+
+        <Button
+            android:id="@+id/messageBtn"
+            android:background="@color/Button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
+            android:textColor="#fff"
+            android:layout_centerInParent="true"
+            android:padding="2px"
+            android:radius="4dp"
+            android:text="메세지" />
+
+        <Button
+            android:id="@+id/carinfoBtn"
+            android:background="@color/Button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="#fff"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="8dp"
+            android:padding="2px"
+            android:radius="4dp"
+            android:text="차량정보" />
+
+        <Button
+            android:id="@+id/settingBtn"
+            android:background="@color/Button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="#fff"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="8dp"
+            android:padding="2px"
+            android:radius="4dp"
+            android:text="환경설정" />
+    </LinearLayout>
+
 </LinearLayout>
