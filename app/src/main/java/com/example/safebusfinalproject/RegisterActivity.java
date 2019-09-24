@@ -1,6 +1,7 @@
 package com.example.safebusfinalproject;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -45,6 +46,7 @@ public class RegisterActivity extends AsyncTask<String, Void, String> {
                 receiveMsg = buffer.toString();
             } else {
                 // 통신 실패
+                Log.i("error",receiveMsg);
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
