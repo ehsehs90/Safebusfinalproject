@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <FrameLayout
+        android:id="@+id/busarea"
+        android:layout_width="match_parent"
+        android:layout_height="1400px"
+        android:background="@drawable/safebus">
+
+
+        <Button
+            android:id="@+id/button01"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical|left"
+            android:layout_marginLeft="90dp"
+            android:textSize="22sp"
+            android:background="@color/colorPrimaryDark"/>
+
+        <Button
+            android:id="@+id/button02"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:background="@color/colorPrimaryDark"
+            android:textSize="22sp" />
+
+        <Button
+            android:id="@+id/button03"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical|left"
+            android:layout_marginLeft="90dp"
+            android:layout_marginBottom="70dp"
+            android:background="@color/colorPrimaryDark"
+            android:textSize="22sp" />
+
+        <Button
+            android:id="@+id/button11"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical|center"
+            android:layout_marginBottom="70dp"
+            android:background="@color/colorAccent"
+            android:textSize="22sp" />
+
+        <Button
+            android:id="@+id/button12"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="90dp"
+            android:layout_marginBottom="70dp"
+            android:textSize="22sp"
+            android:background="@color/colorPrimaryDark"/>
+        <Button
+            android:id="@+id/button13"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="90dp"
+            android:textSize="22sp"
+            android:background="@color/colorPrimaryDark"/>
+
+
+
+
+
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/BackBtn"
+            android:background="@color/Button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="#fff"
+            android:layout_centerInParent="true"
+            android:padding="2px"
+            android:radius="4dp"
+            android:text="뒤로가기" />
+
+        <Button
+            android:id="@+id/messageBtn"
+            android:background="@color/Button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="#fff"
+            android:layout_centerInParent="true"
+            android:padding="2px"
+            android:radius="4dp"
+            android:text="" />
+
+        <Button
+            android:id="@+id/carinfoBtn"
+            android:background="@color/Button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="#fff"
+            android:layout_centerInParent="true"
+            android:padding="2px"
+            android:radius="4dp"
+            android:text="" />
+
+        <Button
+            android:id="@+id/settingBtn"
+            android:background="@color/Button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="#fff"
+            android:layout_centerInParent="true"
+            android:padding="2px"
+            android:radius="4dp"
+            android:text="" />
+    </LinearLayout>
+
+</LinearLayout>
