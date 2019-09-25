@@ -81,7 +81,7 @@
             android:text="메세지" />
 
         <Button
-            android:id="@+id/carinfoBtn"
+            android:id="@+id/businfoBtn"
             android:background="@color/Button"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

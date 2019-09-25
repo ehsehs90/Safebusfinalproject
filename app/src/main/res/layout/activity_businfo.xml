@@ -62,18 +62,18 @@
         android:orientation="horizontal">
 
 
-<!--        <Button-->
-<!--            android:id="@+id/BackBtn1"-->
-<!--            android:onClick="onClick"-->
-<!--            android:background="@color/Button"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:textColor="#fff"-->
-<!--            android:layout_centerInParent="true"-->
-<!--            android:layout_marginEnd="8dp"-->
-<!--            android:padding="2px"-->
-<!--            android:radius="4dp"-->
-<!--            android:text="뒤로가기" />-->
+        <!--        <Button-->
+        <!--            android:id="@+id/BackBtn1"-->
+        <!--            android:onClick="onClick"-->
+        <!--            android:background="@color/Button"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:textColor="#fff"-->
+        <!--            android:layout_centerInParent="true"-->
+        <!--            android:layout_marginEnd="8dp"-->
+        <!--            android:padding="2px"-->
+        <!--            android:radius="4dp"-->
+        <!--            android:text="뒤로가기" />-->
 
         <!--        <Button-->
         <!--            android:id="@+id/messageBtn"-->
