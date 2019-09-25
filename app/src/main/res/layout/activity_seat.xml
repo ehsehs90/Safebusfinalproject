@@ -89,6 +89,7 @@
             android:layout_centerInParent="true"
             android:layout_marginEnd="8dp"
             android:padding="2px"
+            android:onClick="onClick"
             android:radius="4dp"
             android:text="뒤로가기" />
 
