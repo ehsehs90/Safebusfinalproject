@@ -39,6 +39,14 @@
             android:background="@color/투명Button"
             android:text="로그인" />
 
+        <Button
+            android:id="@+id/login3Btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|right"
+            android:layout_marginRight="180dp"
+            android:background="@color/투명Button"
+            android:text="로그인3" />
 
     </FrameLayout>
 

@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
         Button loginBtn = (Button)findViewById(R.id.loginBtn);
         Button seatBtn = (Button)findViewById(R.id.seatBtn);
         Button messageBtn = (Button)findViewById(R.id.messageBtn);
+        Button login3Btn = (Button)findViewById(R.id.login3Btn);
 
         // (Android의 전형적인 event처리방식)
         settingBtn.setOnClickListener(new View.OnClickListener() {
@@ -70,6 +71,17 @@ public class MainActivity extends AppCompatActivity {
                 // 버튼을 눌렀을 때 서비스를 생성하고 실행.
 
                 Intent i = new Intent(MainActivity.this, SendMSGActivity.class);
+                startActivity(i);
+
+            }
+        });
+
+        login3Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 버튼을 눌렀을 때 서비스를 생성하고 실행.
+
+                Intent i = new Intent(MainActivity.this, Login3Activity.class);
                 startActivity(i);
 
             }
