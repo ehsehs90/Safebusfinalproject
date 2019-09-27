@@ -15,6 +15,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class Login3Activity extends AppCompatActivity {
 
     TextView text1,text2;
@@ -125,47 +127,33 @@ public class Login3Activity extends AppCompatActivity {
 //
 //            } // end onClick()
 //        });  // end Listener
-    }
 
-    public void onRadioButtonClicked (View v){
-        boolean checked = ((RadioButton) v).isChecked();
 
-        if (checked) {
-            Toast.makeText(getApplicationContext(), ((RadioButton) v).getText() + "checked",
-                    Toast.LENGTH_SHORT).show();
 
-            String struser = ((RadioButton) v).getText().toString();
+        RadioGroup rg = (RadioGroup)findViewById(R.id.Rgroupuser);
 
-                if(struser == "운전기사"){
-                    text2.setVisibility(android.view.View.INVISIBLE);
-                    rGroup1.setVisibility(android.view.View.INVISIBLE);
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int id) {
+                RadioButton select = (RadioButton)findViewById(id);
+
+                String struser = select.getText().toString();
+                String[] userjob = {"운전기사", "보육교사", "학부모"};
+
+
+                Log.i("info1",struser);
+                Log.i("info2",userjob[0]);
+
+                if(select.isChecked() == true && struser==userjob[0]){
+                    Log.i("info3","if찍힘;");
+                    text2.setVisibility(android.view.View.VISIBLE);
+                    rGroup1.setVisibility(android.view.View.VISIBLE);
                     btnFinish.setVisibility(android.view.View.INVISIBLE);
                     btnInit.setVisibility(android.view.View.INVISIBLE);
-                    imgPet.setVisibility(android.view.View.INVISIBLE);
-                    text2.setVisibility(android.view.View.VISIBLE);
-                    rGroup1.setVisibility(android.view.View.VISIBLE);
-                    btnFinish.setVisibility(android.view.View.VISIBLE);
-                    btnInit.setVisibility(android.view.View.VISIBLE);
-                    imgPet.setVisibility(android.view.View.VISIBLE);
-                }
-                else if(struser == "보육교사"){
-                        text2.setVisibility(android.view.View.INVISIBLE);
-                        rGroup1.setVisibility(android.view.View.INVISIBLE);
-                        btnFinish.setVisibility(android.view.View.INVISIBLE);
-                        btnInit.setVisibility(android.view.View.INVISIBLE);
-                        imgPet.setVisibility(android.view.View.INVISIBLE);
-                    text2.setVisibility(android.view.View.VISIBLE);
-                    rGroup1.setVisibility(android.view.View.VISIBLE);
-                    btnFinish.setVisibility(android.view.View.VISIBLE);
-                    btnInit.setVisibility(android.view.View.VISIBLE);
                     imgPet.setVisibility(android.view.View.VISIBLE);
                 }
                 else{
-                    text2.setVisibility(android.view.View.INVISIBLE);
-                    rGroup1.setVisibility(android.view.View.INVISIBLE);
-                    btnFinish.setVisibility(android.view.View.INVISIBLE);
-                    btnInit.setVisibility(android.view.View.INVISIBLE);
-                    imgPet.setVisibility(android.view.View.INVISIBLE);
+                    Log.i("info3","else찍힘;");
                     text2.setVisibility(android.view.View.VISIBLE);
                     rGroup1.setVisibility(android.view.View.VISIBLE);
                     btnFinish.setVisibility(android.view.View.VISIBLE);
@@ -173,9 +161,10 @@ public class Login3Activity extends AppCompatActivity {
                     imgPet.setVisibility(android.view.View.VISIBLE);
                 }
 
-            final int draw[] = {R.drawable.stationa, R.drawable.stationb, R.drawable.stationc};
 
-            // 라디오버튼 클릭시, 이벤트 처리
+                final int draw[] = {R.drawable.stationa, R.drawable.stationb, R.drawable.stationc};
+
+                // 라디오버튼 클릭시, 이벤트 처리
                 for (int i = 0; i < draw.length; i++) {
                     final int index = i;
                     rArray[index].setOnClickListener(new View.OnClickListener() {
@@ -185,6 +174,18 @@ public class Login3Activity extends AppCompatActivity {
                         }
                     });
                 }
+
+            }
+        });
+
+    }
+
+    public void onRadioButtonClicked (View v){
+        boolean checked = ((RadioButton) v).isChecked();
+
+        if (checked) {
+            Toast.makeText(getApplicationContext(), ((RadioButton) v).getText() + "checked",
+                    Toast.LENGTH_SHORT).show();
         }
         else
             Toast.makeText(getApplicationContext(), ((RadioButton) v).getText() + "unchecked",
