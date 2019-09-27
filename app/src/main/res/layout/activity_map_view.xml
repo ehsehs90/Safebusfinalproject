@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context= "com.example.safebusfinalproject.MapViewActivity">
+    <!--    tools:context="com.example.safebusfinalproject.MainActivity"-->
+    <TextView
+        android:id="@+id/notice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="공지사항">
+    </TextView>
+    <LinearLayout
+        android:id="@+id/tmap_view"
+        android:layout_width="match_parent"
+        android:layout_height="500px"
+        android:orientation="vertical">
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="200px"
+        android:id="@+id/res_textview">
+    </TextView>
+
+</LinearLayout>

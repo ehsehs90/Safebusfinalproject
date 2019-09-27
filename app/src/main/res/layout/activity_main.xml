@@ -9,7 +9,7 @@
     <FrameLayout
         android:id="@+id/busarea"
         android:layout_width="match_parent"
-        android:layout_height="1400px"
+        android:layout_height="500dp"
         android:background="@drawable/safebus">
 
 
@@ -47,6 +47,14 @@
             android:layout_marginRight="180dp"
             android:background="@color/투명Button"
             android:text="로그인3" />
+        <Button
+            android:id="@+id/mapBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginRight="180dp"
+            android:background="@color/투명Button"
+            android:text="MapView" />
 
     </FrameLayout>
 
