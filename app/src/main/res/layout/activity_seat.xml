@@ -10,7 +10,7 @@
         android:id="@+id/busarea"
         android:layout_width="match_parent"
         android:layout_height="1400px"
-        android:background="@drawable/safebus">
+        android:background="@drawable/busbusbang">
 
 
         <Button
@@ -89,6 +89,7 @@
             android:layout_centerInParent="true"
             android:layout_marginEnd="8dp"
             android:padding="2px"
+            android:onClick="onClick"
             android:radius="4dp"
             android:text="뒤로가기" />
 

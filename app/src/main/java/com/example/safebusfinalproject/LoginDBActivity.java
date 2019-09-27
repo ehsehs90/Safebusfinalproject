@@ -11,7 +11,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class RegisterActivity extends AsyncTask<String, Void, String> {
+public class LoginDBActivity extends AsyncTask<String, Void, String> {
     String sendMsg, receiveMsg;
 
     @Override
