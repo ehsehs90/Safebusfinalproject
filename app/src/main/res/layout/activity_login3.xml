@@ -1,19 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Login3Activity">
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:orientation="vertical"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    tools:context=".Login3Activity">-->
 
-        <EditText
-            android:id="@+id/idText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="ID"
-            android:inputType="textPersonName" />
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Login3Activity"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditText
+        android:id="@+id/idText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="ID"
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/passwordText"
@@ -24,49 +31,43 @@
         android:inputType="textPassword" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/Text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="노선을 고르세요."
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:text="자신의 직업을 골라주세요"
+        android:textSize="20dp"
+        android:visibility="visible" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-    <CheckBox
-        android:id="@+id/checkBox4"
+    <RadioGroup
+        android:id="@+id/Rgroupuser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:layout_marginStart="100dp"
-        android:text="역사" />
+        android:orientation="horizontal"
+        android:visibility="visible" >
 
-    <CheckBox
-        android:id="@+id/checkBox3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:layout_marginLeft="10dp"
-        android:text="체육" />
+        <RadioButton
+            android:id="@+id/driver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="운전기사"
+            android:checked="true"
+            android:onClick="onRadioButtonClicked"/>
 
-    <CheckBox
-        android:id="@+id/checkBox1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:layout_marginLeft="100dp"
-        android:text="수학" />
+        <RadioButton
+            android:id="@+id/teacher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="보육교사"
+            android:onClick="onRadioButtonClicked"/>
 
-    <CheckBox
-        android:id="@+id/checkBox2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="10dp"
-        android:text="과학" />
-    </LinearLayout>
+        <RadioButton
+            android:id="@+id/parents"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="학부모"
+            android:onClick="onRadioButtonClicked"/>
+
+    </RadioGroup>
 
     <Button
         android:id="@+id/button1"
@@ -78,22 +79,185 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="결과창"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
 
-    <Button
-        android:id="@+id/loginbtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="login" />
+<!--    <TextView-->
+<!--        android:id="@+id/Text1"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="운전기사"-->
+<!--        android:textSize="20dp" />-->
+
+<!--    <Switch-->
+<!--        android:id="@+id/switchAgree"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="시작함" />-->
 
     <TextView
-        android:id="@+id/registerbtn"
+        android:id="@+id/Text2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="register"
-        android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+        android:text="원하는 노선을 골라주세요"
+        android:textSize="20dp"
+        android:visibility="invisible" />
+
+    <RadioGroup
+        android:id="@+id/Rgroup1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible" >
+
+        <RadioButton
+            android:id="@+id/Rdo50"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A"
+            android:onClick="onRadioButtonClicked"/>
+
+        <RadioButton
+            android:id="@+id/Rdo60"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="B"
+            android:onClick="onRadioButtonClicked"/>
+
+        <RadioButton
+            android:id="@+id/Rdo70"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="C"
+            android:onClick="onRadioButtonClicked"/>
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/BtnFinish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="종료"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/BtnInit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="처음부터 다시"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/ImgPet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible" />
 
 </LinearLayout>
+
+<!--    <TextView-->
+<!--        android:id="@+id/textView2"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:text="결과창"-->
+<!--        android:textAppearance="?android:attr/textAppearanceLarge" />-->
+
+<!--    <RadioGroup-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal">-->
+
+<!--        <RadioButton-->
+<!--            android:id="@+id/rbRed"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:onClick="onRadioButtonClicked"-->
+<!--            android:text="A" />-->
+
+<!--        <RadioButton-->
+<!--            android:id="@+id/rbGreen"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:button="@drawable/station_b"-->
+<!--            android:onClick="onRadioButtonClicked"-->
+<!--            android:text="B" />-->
+
+<!--        <RadioButton-->
+<!--            android:id="@+id/rbBlue"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:button="@drawable/station_c"-->
+<!--            android:onClick="onRadioButtonClicked"-->
+<!--            android:text="C" />-->
+
+
+<!--    </RadioGroup>-->
+
+<!--    <Button-->
+<!--        android:id="@+id/loginbtn"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="login" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/registerbtn"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:text="register"-->
+<!--        android:textAppearance="@style/TextAppearance.AppCompat.Button" />-->
+
+
+
+
+<!--</LinearLayout>-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/textView1"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="노선을 고르세요."-->
+    <!--        android:textAppearance="?android:attr/textAppearanceLarge" />-->
+
+    <!--    <LinearLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:orientation="horizontal">-->
+    <!--    <CheckBox-->
+    <!--        android:id="@+id/checkBox4"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_margin="5dp"-->
+    <!--        android:layout_marginStart="100dp"-->
+    <!--        android:text="역사" />-->
+
+    <!--    <CheckBox-->
+    <!--        android:id="@+id/checkBox3"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_margin="5dp"-->
+    <!--        android:layout_marginLeft="10dp"-->
+    <!--        android:text="체육" />-->
+
+    <!--    <CheckBox-->
+    <!--        android:id="@+id/checkBox1"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_margin="5dp"-->
+    <!--        android:layout_marginLeft="100dp"-->
+    <!--        android:text="수학" />-->
+
+    <!--    <CheckBox-->
+    <!--        android:id="@+id/checkBox2"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_margin="5dp"-->
+    <!--        android:layout_marginStart="4dp"-->
+    <!--        android:layout_marginLeft="10dp"-->
+    <!--        android:text="과학" />-->
+    <!--    </LinearLayout>-->
+
+    <!--    <Button-->
+    <!--        android:id="@+id/button1"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="선택완료" />-->
