@@ -36,6 +36,10 @@ public class Login3Activity extends AppCompatActivity{
     RadioButton userArray[] = new RadioButton[3];
     RadioButton rArray[] = new RadioButton[3];
 
+    RegisterVO_1 voparents = new RegisterVO_1();  // 객체 분리해, 공통가입폼이랑 따로.(공통에는 5개)
+    RegisterVO_2 voteacher = new RegisterVO_2();
+    RegisterVO_3 vodriver = new RegisterVO_3();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
