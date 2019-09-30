@@ -9,6 +9,8 @@ public class RegisterVO_1 {
     String babyName = null;
     String babyGender = null;
     String parentName = null;
+
+
     String parentNum = null;
     String address = null;
     String RFID = null;
@@ -16,6 +18,39 @@ public class RegisterVO_1 {
     Date registerDate = null;
 
 
+    @Override
+    public String toString() {
+        return "RegisterVO_1{" +
+                "memberID='" + memberID + '\'' +
+                ", memberPW='" + memberPW + '\'' +
+                ", memberNum='" + memberNum + '\'' +
+                ", babyName='" + babyName + '\'' +
+                ", babyGender='" + babyGender + '\'' +
+                ", parentName='" + parentName + '\'' +
+                ", parentNum='" + parentNum + '\'' +
+                ", address='" + address + '\'' +
+                ", RFID='" + RFID + '\'' +
+                ", station='" + station + '\'' +
+                ", registerDate=" + registerDate +
+                '}';
+    }
+
+    public RegisterVO_1(String memberID, String memberPW, String memberNum, String babyName, String babyGender, String parentName, String parentNum, String address, String RFID, String station, Date registerDate) {
+        this.memberID = memberID;
+        this.memberPW = memberPW;
+        this.memberNum = memberNum;
+        this.babyName = babyName;
+        this.babyGender = babyGender;
+        this.parentName = parentName;
+        this.parentNum = parentNum;
+        this.address = address;
+        this.RFID = RFID;
+        this.station = station;
+        this.registerDate = registerDate;
+}
+
+    public RegisterVO_1() {
+    }
 
     public String getmemberID() {
         return memberID;

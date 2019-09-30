@@ -13,6 +13,35 @@ public class RegisterVO_3 {
     String driverPicture = null;
     Date registerDate = null;
 
+    public RegisterVO_3() {
+    }
+
+    public RegisterVO_3(String memberID, String memberPW, String memberNum, String driverName, String driverTel, String driverLicense, String carNum, String driverPicture, Date registerDate) {
+        this.memberID = memberID;
+        this.memberPW = memberPW;
+        this.memberNum = memberNum;
+        this.driverName = driverName;
+        this.driverTel = driverTel;
+        this.driverLicense = driverLicense;
+        this.carNum = carNum;
+        this.driverPicture = driverPicture;
+        this.registerDate = registerDate;
+    }
+
+    @Override
+    public String toString() {
+        return "RegisterVO_3{" +
+                "memberID='" + memberID + '\'' +
+                ", memberPW='" + memberPW + '\'' +
+                ", memberNum='" + memberNum + '\'' +
+                ", driverName='" + driverName + '\'' +
+                ", driverTel='" + driverTel + '\'' +
+                ", driverLicense='" + driverLicense + '\'' +
+                ", carNum='" + carNum + '\'' +
+                ", driverPicture='" + driverPicture + '\'' +
+                ", registerDate=" + registerDate +
+                '}';
+    }
 
     public String getmemberID() {
         return memberID;
