@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context= "com.example.safebusfinalproject.MapViewActivity">
+
     <!--    tools:context="com.example.safebusfinalproject.MainActivity"-->
     <TextView
         android:id="@+id/notice"
