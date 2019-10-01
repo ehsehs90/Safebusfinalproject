@@ -12,12 +12,12 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class RegistertestActivity extends AsyncTask<BaseVO, Void, BaseVO> {
+public class RegistertestActivity extends AsyncTask<BaseVO, Void, String> {
     String sendMsg, receiveMsg;
     BaseVO result = new BaseVO();
 
     @Override
-    protected BaseVO doInBackground(BaseVO... base) {
+    protected String doInBackground(BaseVO... base) {
         try {
             String str;
 
@@ -25,7 +25,8 @@ public class RegistertestActivity extends AsyncTask<BaseVO, Void, BaseVO> {
             URL url = new URL("http://70.12.115.53:8080/sendmsg/login.jsp");
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+
             conn.setRequestMethod("POST");
             OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
 
@@ -60,7 +61,7 @@ public class RegistertestActivity extends AsyncTask<BaseVO, Void, BaseVO> {
         }
 
         //jsp로부터 받은 리턴 값
-        return result;
+        return receiveMsg;
     }
 
 }

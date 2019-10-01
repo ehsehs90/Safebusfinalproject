@@ -93,6 +93,7 @@ public class Login4Activity extends AppCompatActivity{
             public void onClick(View view) {
                 try {
                     BaseVO result = new BaseVO();
+                    String resultstr;
                     String id = idet.getText().toString();
                     String pw = pwet.getText().toString();
                     String name = myname.getText().toString();
@@ -104,7 +105,9 @@ public class Login4Activity extends AppCompatActivity{
                     base.setMemberTel(tel);
 
                     RegistertestActivity task = new RegistertestActivity();
-                    result = task.execute(base).get();
+                    resultstr = task.execute(base).get();
+
+                    Log.i("결과",resultstr);
 
                 } catch (Exception e) {
                     Log.i("DBtest", ".....ERROR.....!");
