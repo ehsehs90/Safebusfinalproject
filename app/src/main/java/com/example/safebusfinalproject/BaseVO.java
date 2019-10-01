@@ -6,18 +6,20 @@ public class BaseVO {
 
     String memberID = null;
     String memberPW = null;
-    String memberNum = null;
+    String memberName = null;
     String memberTel = null;
+    String memberinfo = null;
     Date registerDate = null;
 
     public BaseVO() {
     }
 
-    public BaseVO(String memberID, String memberPW, String memberNum, String memberTel, Date registerDate) {
+    public BaseVO(String memberID, String memberPW, String memberName, String memberTel, String memberinfo, Date registerDate) {
         this.memberID = memberID;
         this.memberPW = memberPW;
-        this.memberNum = memberNum;
+        this.memberName = memberName;
         this.memberTel = memberTel;
+        this.memberinfo = memberinfo;
         this.registerDate = registerDate;
     }
 
@@ -26,8 +28,9 @@ public class BaseVO {
         return "BaseVO{" +
                 "memberID='" + memberID + '\'' +
                 ", memberPW='" + memberPW + '\'' +
-                ", memberNum='" + memberNum + '\'' +
+                ", memberNum='" + memberName + '\'' +
                 ", memberTel='" + memberTel + '\'' +
+                ", memberinfo='" + memberinfo + '\'' +
                 ", registerDate=" + registerDate +
                 '}';
     }
@@ -48,12 +51,12 @@ public class BaseVO {
         this.memberPW = memberPW;
     }
 
-    public String getMemberNum() {
-        return memberNum;
+    public String getMemberName() {
+        return memberName;
     }
 
-    public void setMemberNum(String memberNum) {
-        this.memberNum = memberNum;
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
     }
 
     public String getMemberTel() {
@@ -62,6 +65,14 @@ public class BaseVO {
 
     public void setMemberTel(String memberTel) {
         this.memberTel = memberTel;
+    }
+
+    public String getMemberinfo() {
+        return memberinfo;
+    }
+
+    public void setMemberinfo(String memberinfo) {
+        this.memberinfo = memberinfo;
     }
 
     public Date getRegisterDate() {

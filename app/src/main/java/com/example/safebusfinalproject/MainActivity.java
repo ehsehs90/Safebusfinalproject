@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         Button login3Btn = (Button)findViewById(R.id.login3Btn);
         Button mapBtn = (Button)findViewById(R.id.mapBtn);
         Button businfoBtn = (Button)findViewById(R.id.businfoBtn);
-
+        Button login4Btn = (Button)findViewById(R.id.login4Btn);
 
 
         // (Android의 전형적인 event처리방식)
@@ -114,7 +114,16 @@ public class MainActivity extends AppCompatActivity {
         });
         //버튼 ->  리스너
 
+        login4Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 버튼을 눌렀을 때 서비스를 생성하고 실행.
 
+                Intent i = new Intent(MainActivity.this, Login4Activity.class);
+                startActivity(i);
+
+            }
+        });
     }
 
 

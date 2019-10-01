@@ -1,26 +1,22 @@
 package com.example.safebusfinalproject;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
-public class Login3Activity extends AppCompatActivity{
+public class Login4Activity extends AppCompatActivity{
 
     long mNow;
     Date mDate;
@@ -96,7 +92,7 @@ public class Login3Activity extends AppCompatActivity{
         btnRegister.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 try {
-                    String result;
+                    BaseVO result = new BaseVO();
                     String id = idet.getText().toString();
                     String pw = pwet.getText().toString();
                     String name = myname.getText().toString();
@@ -107,8 +103,9 @@ public class Login3Activity extends AppCompatActivity{
                     base.setMemberName(name);
                     base.setMemberTel(tel);
 
-                    RegisterActivity task = new RegisterActivity();
-                    result = task.execute(id, pw).get();
+                    RegistertestActivity task = new RegistertestActivity();
+                    result = task.execute(base).get();
+
                 } catch (Exception e) {
                     Log.i("DBtest", ".....ERROR.....!");
                 }
@@ -131,22 +128,22 @@ public class Login3Activity extends AppCompatActivity{
 
                 if (select.isChecked() == true && struser.equals(userjob[0])) { // 운전기사
                     //Log.i("info3","if찍힘;");
-                    text2.setVisibility(android.view.View.INVISIBLE);
-                    rGroup1.setVisibility(android.view.View.INVISIBLE);
-                    imgPet.setVisibility(android.view.View.INVISIBLE);
-                    rGroupgender.setVisibility(android.view.View.INVISIBLE);
-                    babyName.setVisibility(android.view.View.INVISIBLE);
+                    text2.setVisibility(View.INVISIBLE);
+                    rGroup1.setVisibility(View.INVISIBLE);
+                    imgPet.setVisibility(View.INVISIBLE);
+                    rGroupgender.setVisibility(View.INVISIBLE);
+                    babyName.setVisibility(View.INVISIBLE);
                     btnRegister.setVisibility(View.VISIBLE);
                     address.setVisibility(View.INVISIBLE);
                     license.setVisibility(View.VISIBLE);
                     carNum.setVisibility(View.VISIBLE);
                 } else if (select.isChecked() == true && struser.equals(userjob[1])) { // 보육교사
                     //Log.i("info3","else찍힘;");
-                    text2.setVisibility(android.view.View.INVISIBLE);
-                    rGroup1.setVisibility(android.view.View.INVISIBLE);
-                    imgPet.setVisibility(android.view.View.INVISIBLE);
-                    rGroupgender.setVisibility(android.view.View.INVISIBLE);
-                    babyName.setVisibility(android.view.View.INVISIBLE);
+                    text2.setVisibility(View.INVISIBLE);
+                    rGroup1.setVisibility(View.INVISIBLE);
+                    imgPet.setVisibility(View.INVISIBLE);
+                    rGroupgender.setVisibility(View.INVISIBLE);
+                    babyName.setVisibility(View.INVISIBLE);
                     btnRegister.setVisibility(View.VISIBLE);
                     address.setVisibility(View.INVISIBLE);
                     license.setVisibility(View.INVISIBLE);
@@ -167,11 +164,11 @@ public class Login3Activity extends AppCompatActivity{
                         });
                     }
 
-                    text2.setVisibility(android.view.View.VISIBLE);
-                    rGroup1.setVisibility(android.view.View.VISIBLE);
-                    imgPet.setVisibility(android.view.View.VISIBLE);
-                    rGroupgender.setVisibility(android.view.View.VISIBLE);
-                    babyName.setVisibility(android.view.View.VISIBLE);
+                    text2.setVisibility(View.VISIBLE);
+                    rGroup1.setVisibility(View.VISIBLE);
+                    imgPet.setVisibility(View.VISIBLE);
+                    rGroupgender.setVisibility(View.VISIBLE);
+                    babyName.setVisibility(View.VISIBLE);
                     btnRegister.setVisibility(View.VISIBLE);
                     address.setVisibility(View.VISIBLE);
                     license.setVisibility(View.INVISIBLE);
