@@ -3,27 +3,18 @@ package com.example.safebusfinalproject;
 import java.util.Date;
 
 public class RegisterVO_1 {
-    String memberID = null;
-    String memberPW = null;
-    String memberNum = null;
+
     String babyName = null;
     String babyGender = null;
     String parentName = null;
-
-
     String parentNum = null;
     String address = null;
     String RFID = null;
     String station = null;
-    Date registerDate = null;
-
 
     @Override
     public String toString() {
         return "RegisterVO_1{" +
-                "memberID='" + memberID + '\'' +
-                ", memberPW='" + memberPW + '\'' +
-                ", memberNum='" + memberNum + '\'' +
                 ", babyName='" + babyName + '\'' +
                 ", babyGender='" + babyGender + '\'' +
                 ", parentName='" + parentName + '\'' +
@@ -31,14 +22,10 @@ public class RegisterVO_1 {
                 ", address='" + address + '\'' +
                 ", RFID='" + RFID + '\'' +
                 ", station='" + station + '\'' +
-                ", registerDate=" + registerDate +
                 '}';
     }
 
     public RegisterVO_1(String memberID, String memberPW, String memberNum, String babyName, String babyGender, String parentName, String parentNum, String address, String RFID, String station, Date registerDate) {
-        this.memberID = memberID;
-        this.memberPW = memberPW;
-        this.memberNum = memberNum;
         this.babyName = babyName;
         this.babyGender = babyGender;
         this.parentName = parentName;
@@ -46,39 +33,10 @@ public class RegisterVO_1 {
         this.address = address;
         this.RFID = RFID;
         this.station = station;
-        this.registerDate = registerDate;
 }
 
     public RegisterVO_1() {
     }
-
-    public String getmemberID() {
-        return memberID;
-    }
-
-    public void setmemberID(String memberID) {
-        this.memberID = memberID;
-    }
-
-
-    public String getmemberPW() {
-        return memberPW;
-    }
-
-    public void setmemberPW(String memberPW) {
-        this.memberPW = memberPW;
-    }
-
-
-
-    public String getmemberNum() {
-        return memberNum;
-    }
-
-    public void setmemberNum(String memberNum) {
-        this.memberNum = memberNum;
-    }
-
 
 
     public String getbabyName() {
@@ -143,12 +101,4 @@ public class RegisterVO_1 {
         this.station = station;
     }
 
-
-    public Date getregisterDate() {
-        return registerDate;
-    }
-
-    public void setregisterDate(Date registerDate) {
-        this.registerDate = registerDate;
-    }
 }
