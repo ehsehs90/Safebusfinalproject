@@ -1,7 +1,5 @@
 package com.example.safebusfinalproject;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,10 +11,12 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Login3Activity extends AppCompatActivity{
+public class Login5Activity extends AppCompatActivity{
 
     long mNow;
     Date mDate;
@@ -32,14 +32,17 @@ public class Login3Activity extends AppCompatActivity{
     RadioButton userArray[] = new RadioButton[3];
     RadioButton rArray[] = new RadioButton[3];
 
-    BaseVO base = new BaseVO();
-    RegisterParentsVO voparents = new RegisterParentsVO();  // 객체 분리해, 공통가입폼이랑 따로.(공통에는 5개)
-    RegisterDriverVO vodriver = new RegisterDriverVO();
+    RParentsVO voparents = new RParentsVO();
+    RTeacherVO voteacher = new RTeacherVO();
+    RDriverVO vodriver = new RDriverVO();
+
+    String chk = null;
+    String chk2 = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login3);
+        setContentView(R.layout.activity_login5);
         setTitle("회원가입");
 
         // 위젯을 변수에 대입
@@ -74,6 +77,7 @@ public class Login3Activity extends AppCompatActivity{
         license = (EditText) findViewById(R.id.license);
         carNum = (EditText) findViewById(R.id.carNum);
 
+
         rGroupgender = (RadioGroup) findViewById(R.id.Rgroupgender);
 
         rGroupgender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -81,30 +85,80 @@ public class Login3Activity extends AppCompatActivity{
             public void onCheckedChanged(RadioGroup radioGroup, int id) {
                 RadioButton select = (RadioButton) findViewById(id);
 
-                String strgender = select.getText().toString();
+                final String strgender = select.getText().toString();
                 String[] gender = {"남아", "여아"};
 
                 Log.i("성별",strgender);
 
+                chk2 = strgender;
+
             }
         });
+
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 try {
-                    String result;
+                    String resultstr = null,resultstr2 = null,resultstr3 = null;
                     String id = idet.getText().toString();
                     String pw = pwet.getText().toString();
                     String name = myname.getText().toString();
                     String tel = phonenum.getText().toString();
+                    String babyname2 = babyName.getText().toString();
+                    String address2 = address.getText().toString();
+                    String license2 = license.getText().toString();
+                    String carnum2 = carNum.getText().toString();
 
-                    base.setMemberID(id);
-                    base.setMemberPW(pw);
-                    base.setMemberName(name);
-                    base.setMemberTel(tel);
+                    Log.i("chk?",chk);
 
-                    RegisterActivity task = new RegisterActivity();
-                    result = task.execute(id, pw).get();
+                    if(chk.equals("학부모")) {
+
+                        voparents.setMemberID(id);
+                        voparents.setMemberPW(pw);
+                        voparents.setMemberName(name);
+                        voparents.setMemberTel(tel);
+                        voparents.setMemberinfo("1");
+                        voparents.setRegisterDate(getTime());
+
+                        voparents.setBabyName(babyname2);
+                        voparents.setAddress(address2);
+                        voparents.setBabyGender(chk2);
+
+                        RParentsActivity task = new RParentsActivity();
+                        resultstr = task.execute(voparents).get();
+                    }
+                    else if(chk.equals("보육교사")) {
+
+                        voteacher.setMemberID(id);
+                        voteacher.setMemberPW(pw);
+                        voteacher.setMemberName(name);
+                        voteacher.setMemberTel(tel);
+                        voteacher.setMemberinfo("2");
+                        voteacher.setRegisterDate(getTime());
+
+                        RTeacherActivity task2 = new RTeacherActivity();
+                        resultstr2 = task2.execute(voteacher).get();
+                    }
+                    else if(chk.equals("운전기사")) {
+
+                        vodriver.setMemberID(id);
+                        vodriver.setMemberPW(pw);
+                        vodriver.setMemberName(name);
+                        vodriver.setMemberTel(tel);
+                        vodriver.setMemberinfo("3");
+                        vodriver.setRegisterDate(getTime());
+
+                        vodriver.setDriverLicense(license2);
+                        vodriver.setCarNumber(carnum2);
+
+                        RDriverActivity task3 = new RDriverActivity();
+                        resultstr3 = task3.execute(vodriver).get();
+                    }
+
+                    Log.i("결과",resultstr);
+                    Log.i("결과2",resultstr2);
+                    Log.i("결과3",resultstr3);
+
                 } catch (Exception e) {
                     Log.i("DBtest", ".....ERROR.....!");
                 }
@@ -118,31 +172,31 @@ public class Login3Activity extends AppCompatActivity{
             public void onCheckedChanged(RadioGroup radioGroup, int id) {
                 RadioButton select = (RadioButton) findViewById(id);
 
-                String struser = select.getText().toString();
+                final String struser = select.getText().toString();
                 String[] userjob = {"운전기사", "보육교사", "학부모"};
 
+                chk = struser;
 
                 Log.i("info1", struser);
-                Log.i("info2", userjob[0]);
 
                 if (select.isChecked() == true && struser.equals(userjob[0])) { // 운전기사
                     //Log.i("info3","if찍힘;");
-                    text2.setVisibility(android.view.View.INVISIBLE);
-                    rGroup1.setVisibility(android.view.View.INVISIBLE);
-                    imgPet.setVisibility(android.view.View.INVISIBLE);
-                    rGroupgender.setVisibility(android.view.View.INVISIBLE);
-                    babyName.setVisibility(android.view.View.INVISIBLE);
+                    text2.setVisibility(View.INVISIBLE);
+                    rGroup1.setVisibility(View.INVISIBLE);
+                    imgPet.setVisibility(View.INVISIBLE);
+                    rGroupgender.setVisibility(View.INVISIBLE);
+                    babyName.setVisibility(View.INVISIBLE);
                     btnRegister.setVisibility(View.VISIBLE);
                     address.setVisibility(View.INVISIBLE);
                     license.setVisibility(View.VISIBLE);
                     carNum.setVisibility(View.VISIBLE);
                 } else if (select.isChecked() == true && struser.equals(userjob[1])) { // 보육교사
                     //Log.i("info3","else찍힘;");
-                    text2.setVisibility(android.view.View.INVISIBLE);
-                    rGroup1.setVisibility(android.view.View.INVISIBLE);
-                    imgPet.setVisibility(android.view.View.INVISIBLE);
-                    rGroupgender.setVisibility(android.view.View.INVISIBLE);
-                    babyName.setVisibility(android.view.View.INVISIBLE);
+                    text2.setVisibility(View.INVISIBLE);
+                    rGroup1.setVisibility(View.INVISIBLE);
+                    imgPet.setVisibility(View.INVISIBLE);
+                    rGroupgender.setVisibility(View.INVISIBLE);
+                    babyName.setVisibility(View.INVISIBLE);
                     btnRegister.setVisibility(View.VISIBLE);
                     address.setVisibility(View.INVISIBLE);
                     license.setVisibility(View.INVISIBLE);
@@ -159,15 +213,21 @@ public class Login3Activity extends AppCompatActivity{
                             @Override
                             public void onClick(View view) {
                                 imgPet.setImageResource(draw[index]);
+                                if(index==0)
+                                    voparents.setStation("A");
+                                else if(index==1)
+                                    voparents.setStation("B");
+                                else if(index==2)
+                                    voparents.setStation("C");
                             }
                         });
                     }
 
-                    text2.setVisibility(android.view.View.VISIBLE);
-                    rGroup1.setVisibility(android.view.View.VISIBLE);
-                    imgPet.setVisibility(android.view.View.VISIBLE);
-                    rGroupgender.setVisibility(android.view.View.VISIBLE);
-                    babyName.setVisibility(android.view.View.VISIBLE);
+                    text2.setVisibility(View.VISIBLE);
+                    rGroup1.setVisibility(View.VISIBLE);
+                    imgPet.setVisibility(View.VISIBLE);
+                    rGroupgender.setVisibility(View.VISIBLE);
+                    babyName.setVisibility(View.VISIBLE);
                     btnRegister.setVisibility(View.VISIBLE);
                     address.setVisibility(View.VISIBLE);
                     license.setVisibility(View.INVISIBLE);
@@ -177,9 +237,7 @@ public class Login3Activity extends AppCompatActivity{
             }
         });
 
-        String tmp = getTime();
-
-        Log.i("realtime", tmp);
+        Log.i("realtime", getTime());
 
     }
 

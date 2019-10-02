@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         Button mapBtn = (Button)findViewById(R.id.mapBtn);
         Button businfoBtn = (Button)findViewById(R.id.businfoBtn);
         Button login4Btn = (Button)findViewById(R.id.login4Btn);
-
+        Button login5Btn = (Button)findViewById(R.id.login5Btn);
 
         // (Android의 전형적인 event처리방식)
         settingBtn.setOnClickListener(new View.OnClickListener() {
@@ -120,6 +120,17 @@ public class MainActivity extends AppCompatActivity {
                 // 버튼을 눌렀을 때 서비스를 생성하고 실행.
 
                 Intent i = new Intent(MainActivity.this, Login4Activity.class);
+                startActivity(i);
+
+            }
+        });
+
+        login5Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 버튼을 눌렀을 때 서비스를 생성하고 실행.
+
+                Intent i = new Intent(MainActivity.this, Login5Activity.class);
                 startActivity(i);
 
             }

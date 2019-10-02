@@ -19,6 +19,7 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".BusinfoActivity" />
         <activity android:name=".Login4Activity" />
+        <activity android:name=".Login5Activity" />
         <activity
             android:name=".ActSettings"
             android:label="@string/app_name" />

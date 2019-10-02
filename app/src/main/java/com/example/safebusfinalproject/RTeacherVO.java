@@ -1,8 +1,6 @@
 package com.example.safebusfinalproject;
 
-import java.util.Date;
-
-public class BaseVO {
+public class RTeacherVO {
 
     String memberID = null;
     String memberPW = null;
@@ -11,10 +9,10 @@ public class BaseVO {
     String memberinfo = null;
     String registerDate = null;
 
-    public BaseVO() {
+    public RTeacherVO() {
     }
 
-    public BaseVO(String memberID, String memberPW, String memberName, String memberTel, String memberinfo, String registerDate) {
+    public RTeacherVO(String memberID, String memberPW, String memberName, String memberTel, String memberinfo, String registerDate) {
         this.memberID = memberID;
         this.memberPW = memberPW;
         this.memberName = memberName;

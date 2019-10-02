@@ -33,8 +33,10 @@ public class Login4Activity extends AppCompatActivity{
     RadioButton rArray[] = new RadioButton[3];
 
     BaseVO base = new BaseVO();
-    RegisterVO_1 voparents = new RegisterVO_1();  // 객체 분리해, 공통가입폼이랑 따로.(공통에는 5개)
-    RegisterVO_3 vodriver = new RegisterVO_3();
+    RegisterParentsVO voparents = new RegisterParentsVO();
+    RegisterDriverVO vodriver = new RegisterDriverVO();
+
+    String chk = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +76,7 @@ public class Login4Activity extends AppCompatActivity{
         license = (EditText) findViewById(R.id.license);
         carNum = (EditText) findViewById(R.id.carNum);
 
+
         rGroupgender = (RadioGroup) findViewById(R.id.Rgroupgender);
 
         rGroupgender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -86,14 +89,16 @@ public class Login4Activity extends AppCompatActivity{
 
                 Log.i("성별",strgender);
 
+                voparents.setbabyGender(strgender);
+
             }
         });
+
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 try {
-                    BaseVO result = new BaseVO();
-                    String resultstr;
+                    String resultstr = null,resultstr2 = null,resultstr3 = null;
                     String id = idet.getText().toString();
                     String pw = pwet.getText().toString();
                     String name = myname.getText().toString();
@@ -104,10 +109,47 @@ public class Login4Activity extends AppCompatActivity{
                     base.setMemberName(name);
                     base.setMemberTel(tel);
 
-                    RegistertestActivity task = new RegistertestActivity();
-                    resultstr = task.execute(base).get();
+                    if(chk.equals("학부모"))
+                        base.setMemberinfo("1");
+                    else if(chk.equals("보육교사"))
+                        base.setMemberinfo("2");
+                    else if(chk.equals("운전기사"))
+                        base.setMemberinfo("3");
+
+//                    RegistertestActivity task = new RegistertestActivity();  // 기본 + 보육교사
+//                    resultstr = task.execute(base).get();
+//
+
+                    String babyname2 = babyName.getText().toString();
+                    String address2 = address.getText().toString();
+
+                    voparents.setbabyName(babyname2);
+                    voparents.setaddress(address2);
+
+                    String license2 = license.getText().toString();
+                    String carnum2 = carNum.getText().toString();
+
+                    vodriver.setDriverLicense(license2);
+                    vodriver.setCarNum(carnum2);
+
+                    Log.i("chk?",chk);
+
+                    if(chk.equals("학부모")) {
+                        RegisterparentsActivity task = new RegisterparentsActivity();
+                        resultstr = task.execute(voparents).get();
+                    }
+                    else if(chk.equals("보육교사")) {
+                        RegisterteacherActivity task2 = new RegisterteacherActivity();
+                        resultstr2 = task2.execute(vodriver).get();
+                    }
+                    else if(chk.equals("운전기사")) {
+                        RegisterdriverActivity task3 = new RegisterdriverActivity();
+                        resultstr3 = task3.execute(vodriver).get();
+                    }
 
                     Log.i("결과",resultstr);
+                    Log.i("결과2",resultstr2);
+                    Log.i("결과3",resultstr3);
 
                 } catch (Exception e) {
                     Log.i("DBtest", ".....ERROR.....!");
@@ -122,9 +164,10 @@ public class Login4Activity extends AppCompatActivity{
             public void onCheckedChanged(RadioGroup radioGroup, int id) {
                 RadioButton select = (RadioButton) findViewById(id);
 
-                String struser = select.getText().toString();
+                final String struser = select.getText().toString();
                 String[] userjob = {"운전기사", "보육교사", "학부모"};
 
+                chk = struser;
 
                 Log.i("info1", struser);
                 Log.i("info2", userjob[0]);
@@ -163,6 +206,12 @@ public class Login4Activity extends AppCompatActivity{
                             @Override
                             public void onClick(View view) {
                                 imgPet.setImageResource(draw[index]);
+                                if(index==0)
+                                    voparents.setstation("A");
+                                else if(index==1)
+                                    voparents.setstation("B");
+                                else if(index==2)
+                                    voparents.setstation("C");
                             }
                         });
                     }
@@ -182,6 +231,7 @@ public class Login4Activity extends AppCompatActivity{
         });
 
         String tmp = getTime();
+        base.setRegisterDate(tmp);
 
         Log.i("realtime", tmp);
 

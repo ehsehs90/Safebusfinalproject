@@ -53,8 +53,18 @@
             android:layout_height="wrap_content"
             android:layout_gravity="top|right"
             android:layout_marginRight="250dp"
+            android:layout_marginTop="100dp"
             android:background="@color/투명Button"
             android:text="로그인4" />
+        <Button
+            android:id="@+id/login5Btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|right"
+            android:layout_marginRight="250dp"
+            android:layout_marginTop="200dp"
+            android:background="@color/투명Button"
+            android:text="로그인5" />
         <Button
             android:id="@+id/mapBtn"
             android:layout_width="wrap_content"
