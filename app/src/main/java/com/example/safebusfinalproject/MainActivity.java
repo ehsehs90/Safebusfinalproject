@@ -1,5 +1,6 @@
 package com.example.safebusfinalproject;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,10 @@ import com.example.safebusfinalproject.trash.Login4Activity;
 import com.example.safebusfinalproject.trash.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,8 +31,20 @@ public class MainActivity extends AppCompatActivity {
         Button login3Btn = (Button)findViewById(R.id.login3Btn);
         Button mapBtn = (Button)findViewById(R.id.mapBtn);
         Button businfoBtn = (Button)findViewById(R.id.businfoBtn);
-        Button login4Btn = (Button)findViewById(R.id.login4Btn);
+        Button goBtn = (Button)findViewById(R.id.goBtn);
         Button login5Btn = (Button)findViewById(R.id.login5Btn);
+
+        goBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent();
+                ComponentName cname = new ComponentName("com.example.safebusfinalproject",
+                        "com.example.safebusfinalproject.trash.PredictImageActivity");
+                i.setComponent(cname);
+                startActivity(i);
+
+            }
+        });
 
         // (Android의 전형적인 event처리방식)
         settingBtn.setOnClickListener(new View.OnClickListener() {
@@ -119,16 +136,16 @@ public class MainActivity extends AppCompatActivity {
         });
         //버튼 ->  리스너
 
-        login4Btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // 버튼을 눌렀을 때 서비스를 생성하고 실행.
-
-                Intent i = new Intent(MainActivity.this, Login4Activity.class);
-                startActivity(i);
-
-            }
-        });
+//        login4Btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                // 버튼을 눌렀을 때 서비스를 생성하고 실행.
+//
+//                Intent i = new Intent(MainActivity.this, Login4Activity.class);
+//                startActivity(i);
+//
+//            }
+//        });
 
         login5Btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,6 +157,9 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
+
     }
 
 
