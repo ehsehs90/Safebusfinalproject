@@ -1,9 +1,9 @@
-package com.example.safebusfinalproject;
+package com.example.safebusfinalproject.trash;
 
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.safebusfinalproject.VO.RegisterParentsVO;
+import com.example.safebusfinalproject.trash.BaseVO;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,16 +13,16 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class RegisterparentsActivity extends AsyncTask<RegisterParentsVO, Void, String> {
+public class RegistertestActivity extends AsyncTask<BaseVO, Void, String> {
     String sendMsg, receiveMsg;
 
     @Override
-    protected String doInBackground(RegisterParentsVO... rp) {
+    protected String doInBackground(BaseVO... base) {
         try {
             String str;
 
             // 접속할 서버 주소 (이클립스에서 android.jsp 실행시 웹브라우저 주소)
-            URL url = new URL("http://70.12.115.53:8080/sendmsg/parentslogin.jsp");
+            URL url = new URL("http://70.12.115.53:8080/sendmsg/baselogin.jsp");
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
@@ -31,8 +31,8 @@ public class RegisterparentsActivity extends AsyncTask<RegisterParentsVO, Void, 
             OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
 
             // 전송할 데이터. GET 방식으로 작성
-            sendMsg = "babyname=" + rp[0].getbabyName() + "&babygender=" + rp[0].getbabyGender()
-                    + "&address=" + rp[0].getaddress() + "&station=" + rp[0].getstation();
+            sendMsg = "id=" + base[0].getMemberID() + "&pw=" + base[0].getMemberPW()  + "&name=" + base[0].getMemberName()
+                    + "&tel=" + base[0].getMemberTel() + "&date=" + base[0].getRegisterDate() + "&info=" + base[0].getMemberinfo();
 
             Log.i("wpqkf",sendMsg);
 

@@ -1,4 +1,4 @@
-package com.example.safebusfinalproject;
+package com.example.safebusfinalproject.trash;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
+
+import com.example.safebusfinalproject.R;
 
 public class LoginActivity extends AppCompatActivity {
 

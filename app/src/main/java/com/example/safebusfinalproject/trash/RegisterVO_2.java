@@ -1,6 +1,4 @@
-package com.example.safebusfinalproject.VO;
-
-import java.util.Date;
+package com.example.safebusfinalproject.trash;
 
 public class RegisterVO_2 {
 

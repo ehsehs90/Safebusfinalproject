@@ -1,9 +1,9 @@
-package com.example.safebusfinalproject;
+package com.example.safebusfinalproject.trash;
 
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.safebusfinalproject.VO.RegisterDriverVO;
+import com.example.safebusfinalproject.trash.RegisterDriverVO;
 
 import java.io.BufferedReader;
 import java.io.IOException;

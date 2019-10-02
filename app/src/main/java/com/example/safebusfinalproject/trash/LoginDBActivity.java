@@ -1,9 +1,8 @@
-package com.example.safebusfinalproject;
+package com.example.safebusfinalproject.trash;
 
 import android.os.AsyncTask;
 import android.util.Log;
-
-import com.example.safebusfinalproject.VO.RegisterDriverVO;
+import android.widget.BaseExpandableListAdapter;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,29 +12,32 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class RegisterdriverActivity extends AsyncTask<RegisterDriverVO, Void, String> {
+public class LoginDBActivity extends AsyncTask<String, Void, String> {
     String sendMsg, receiveMsg;
 
+    //BaseVO baseVO = new BaseVO();
+
+
     @Override
-    protected String doInBackground(RegisterDriverVO... rp) {
+    protected String doInBackground(String... strings) {
         try {
             String str;
 
             // 접속할 서버 주소 (이클립스에서 android.jsp 실행시 웹브라우저 주소)
-            URL url = new URL("http://70.12.115.53:8080/sendmsg/driverlogin.jsp");
+            URL url = new URL("http://70.12.115.54:8090/bus/List.jsp");
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
-
+            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             conn.setRequestMethod("POST");
             OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
 
             // 전송할 데이터. GET 방식으로 작성
-            sendMsg = "driverLicense=" + rp[0].getDriverLicense() + "&carNum=" + rp[0].getCarNum()
-                    + "&driverPicture=" + rp[0].getDriverPicture();
-
-            Log.i("wpqkf",sendMsg);
-
+            if(sendMsg.equals("vision_write")) {
+                sendMsg = "vision_write="+strings[0] + "&type=" + strings[1];
+            }
+            else if(sendMsg.equals("vision_list")){
+                sendMsg="&type"+strings[0];
+            }
             osw.write(sendMsg);
             osw.flush();
 

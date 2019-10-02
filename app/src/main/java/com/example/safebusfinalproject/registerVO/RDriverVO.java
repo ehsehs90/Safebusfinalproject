@@ -1,4 +1,4 @@
-package com.example.safebusfinalproject.VO;
+package com.example.safebusfinalproject.registerVO;
 
 public class RDriverVO {
 

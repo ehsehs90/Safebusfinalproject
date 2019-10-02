@@ -2,7 +2,7 @@ package com.example.safebusfinalproject;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.safebusfinalproject.VO.ViaPointVO;
+import com.example.safebusfinalproject.mapVO.ViaPointVO;
 
 import org.json.JSONArray;
 import org.json.JSONException;

@@ -3,7 +3,7 @@ package com.example.safebusfinalproject;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.safebusfinalproject.VO.RDriverVO;
+import com.example.safebusfinalproject.registerVO.RDriverVO;
 
 import java.io.BufferedReader;
 import java.io.IOException;

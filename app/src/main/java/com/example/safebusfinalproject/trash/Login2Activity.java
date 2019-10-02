@@ -1,6 +1,4 @@
-package com.example.safebusfinalproject;
-
-import android.os.AsyncTask;
+package com.example.safebusfinalproject.trash;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -10,13 +8,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import com.example.safebusfinalproject.R;
 
 public class Login2Activity extends AppCompatActivity {
 

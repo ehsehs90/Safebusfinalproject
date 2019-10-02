@@ -1,4 +1,4 @@
-package com.example.safebusfinalproject.VO;
+package com.example.safebusfinalproject.trash;
 
 public class RegisterParentsVO {
 

@@ -1,4 +1,4 @@
-package com.example.safebusfinalproject;
+package com.example.safebusfinalproject.trash;
 
 import androidx.appcompat.app.AppCompatActivity;
 
