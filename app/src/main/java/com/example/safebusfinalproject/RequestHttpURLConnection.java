@@ -1,13 +1,12 @@
 package com.example.safebusfinalproject;
-import android.content.ContentValues;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.TextView;
+
+import com.example.safebusfinalproject.VO.ViaPointVO;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,8 +20,6 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 public class RequestHttpURLConnection {

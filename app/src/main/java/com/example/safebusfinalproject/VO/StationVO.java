@@ -1,4 +1,4 @@
-package com.example.safebusfinalproject;
+package com.example.safebusfinalproject.VO;
 
 public class StationVO {
     String index = null;

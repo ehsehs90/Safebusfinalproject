@@ -1,12 +1,11 @@
-package com.example.safebusfinalproject;
+package com.example.safebusfinalproject.VO;
 
-public class RParentsVO {
+public class RDriverVO {
 
-    String babyName = null;
-    String babyGender = null;
-    String address = null;
-    //String RFID = null;
-    String station = null;
+    String driverLicense = null;
+    //String driverPhone = null;
+    String carNumber = null;
+    String driverPicture= null;
 
     String memberID = null;
     String memberPW = null;
@@ -15,17 +14,18 @@ public class RParentsVO {
     String memberinfo = null;
     String registerDate = null;
 
-    public RParentsVO() {
+
+    public RDriverVO() {
         super();
     }
 
-    public RParentsVO(String babyName, String babyGender, String address, String station, String memberID,
-                      String memberPW, String memberName, String memberTel, String memberinfo, String registerDate) {
+
+    public RDriverVO(String driverLicense, String carNumber, String driverPicture, String memberID, String memberPW,
+                     String memberName, String memberTel, String memberinfo, String registerDate) {
         super();
-        this.babyName = babyName;
-        this.babyGender = babyGender;
-        this.address = address;
-        this.station = station;
+        this.driverLicense = driverLicense;
+        this.carNumber = carNumber;
+        this.driverPicture = driverPicture;
         this.memberID = memberID;
         this.memberPW = memberPW;
         this.memberName = memberName;
@@ -37,49 +37,39 @@ public class RParentsVO {
 
     @Override
     public String toString() {
-        return "RParentsVO [babyName=" + babyName + ", babyGender=" + babyGender + ", address=" + address + ", station="
-                + station + ", memberID=" + memberID + ", memberPW=" + memberPW + ", memberName=" + memberName
+        return "RDriverVO [driverLicense=" + driverLicense + ", carNumber=" + carNumber + ", driverPicture="
+                + driverPicture + ", memberID=" + memberID + ", memberPW=" + memberPW + ", memberName=" + memberName
                 + ", memberTel=" + memberTel + ", memberinfo=" + memberinfo + ", registerDate=" + registerDate + "]";
     }
 
 
-    public String getBabyName() {
-        return babyName;
+    public String getDriverLicense() {
+        return driverLicense;
     }
 
 
-    public void setBabyName(String babyName) {
-        this.babyName = babyName;
+    public void setDriverLicense(String driverLicense) {
+        this.driverLicense = driverLicense;
     }
 
 
-    public String getBabyGender() {
-        return babyGender;
+    public String getCarNumber() {
+        return carNumber;
     }
 
 
-    public void setBabyGender(String babyGender) {
-        this.babyGender = babyGender;
+    public void setCarNumber(String carNumber) {
+        this.carNumber = carNumber;
     }
 
 
-    public String getAddress() {
-        return address;
+    public String getDriverPicture() {
+        return driverPicture;
     }
 
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-
-    public String getStation() {
-        return station;
-    }
-
-
-    public void setStation(String station) {
-        this.station = station;
+    public void setDriverPicture(String driverPicture) {
+        this.driverPicture = driverPicture;
     }
 
 
@@ -141,6 +131,5 @@ public class RParentsVO {
     public void setRegisterDate(String registerDate) {
         this.registerDate = registerDate;
     }
-
 
 }

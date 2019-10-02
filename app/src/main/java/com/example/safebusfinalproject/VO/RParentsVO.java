@@ -1,11 +1,12 @@
-package com.example.safebusfinalproject;
+package com.example.safebusfinalproject.VO;
 
-public class RDriverVO {
+public class RParentsVO {
 
-    String driverLicense = null;
-    //String driverPhone = null;
-    String carNumber = null;
-    String driverPicture= null;
+    String babyName = null;
+    String babyGender = null;
+    String address = null;
+    //String RFID = null;
+    String station = null;
 
     String memberID = null;
     String memberPW = null;
@@ -14,18 +15,17 @@ public class RDriverVO {
     String memberinfo = null;
     String registerDate = null;
 
-
-    public RDriverVO() {
+    public RParentsVO() {
         super();
     }
 
-
-    public RDriverVO(String driverLicense, String carNumber, String driverPicture, String memberID, String memberPW,
-                     String memberName, String memberTel, String memberinfo, String registerDate) {
+    public RParentsVO(String babyName, String babyGender, String address, String station, String memberID,
+                      String memberPW, String memberName, String memberTel, String memberinfo, String registerDate) {
         super();
-        this.driverLicense = driverLicense;
-        this.carNumber = carNumber;
-        this.driverPicture = driverPicture;
+        this.babyName = babyName;
+        this.babyGender = babyGender;
+        this.address = address;
+        this.station = station;
         this.memberID = memberID;
         this.memberPW = memberPW;
         this.memberName = memberName;
@@ -37,39 +37,49 @@ public class RDriverVO {
 
     @Override
     public String toString() {
-        return "RDriverVO [driverLicense=" + driverLicense + ", carNumber=" + carNumber + ", driverPicture="
-                + driverPicture + ", memberID=" + memberID + ", memberPW=" + memberPW + ", memberName=" + memberName
+        return "RParentsVO [babyName=" + babyName + ", babyGender=" + babyGender + ", address=" + address + ", station="
+                + station + ", memberID=" + memberID + ", memberPW=" + memberPW + ", memberName=" + memberName
                 + ", memberTel=" + memberTel + ", memberinfo=" + memberinfo + ", registerDate=" + registerDate + "]";
     }
 
 
-    public String getDriverLicense() {
-        return driverLicense;
+    public String getBabyName() {
+        return babyName;
     }
 
 
-    public void setDriverLicense(String driverLicense) {
-        this.driverLicense = driverLicense;
+    public void setBabyName(String babyName) {
+        this.babyName = babyName;
     }
 
 
-    public String getCarNumber() {
-        return carNumber;
+    public String getBabyGender() {
+        return babyGender;
     }
 
 
-    public void setCarNumber(String carNumber) {
-        this.carNumber = carNumber;
+    public void setBabyGender(String babyGender) {
+        this.babyGender = babyGender;
     }
 
 
-    public String getDriverPicture() {
-        return driverPicture;
+    public String getAddress() {
+        return address;
     }
 
 
-    public void setDriverPicture(String driverPicture) {
-        this.driverPicture = driverPicture;
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+
+    public String getStation() {
+        return station;
+    }
+
+
+    public void setStation(String station) {
+        this.station = station;
     }
 
 
@@ -131,5 +141,6 @@ public class RDriverVO {
     public void setRegisterDate(String registerDate) {
         this.registerDate = registerDate;
     }
+
 
 }
