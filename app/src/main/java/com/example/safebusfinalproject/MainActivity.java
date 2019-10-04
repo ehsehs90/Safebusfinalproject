@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         Button businfoBtn = (Button)findViewById(R.id.businfoBtn);
         Button goBtn = (Button)findViewById(R.id.goBtn);
         Button login5Btn = (Button)findViewById(R.id.login5Btn);
+        Button login6Btn = (Button)findViewById(R.id.login6Btn);
+
 
         goBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,6 +160,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        login6Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 버튼을 눌렀을 때 서비스를 생성하고 실행.
+
+                Intent i = new Intent(MainActivity.this, Login6Activity.class);
+                startActivity(i);
+
+            }
+        });
 
 
     }

@@ -29,7 +29,7 @@ import com.example.safebusfinalproject.registerVO.RTeacherVO;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Login5Activity extends AppCompatActivity{
+public class Login6Activity extends AppCompatActivity{
 
     long mNow;
     Date mDate;
@@ -148,7 +148,7 @@ public class Login5Activity extends AppCompatActivity{
                             Toast.makeText(getApplicationContext(), "회원 가입 성공",
                                     Toast.LENGTH_SHORT).show();
 
-                            Intent intent = new Intent(Login5Activity.this, MainActivity.class);
+                            Intent intent = new Intent(Login6Activity.this, MainActivity.class);
                             startActivity(intent);
                         }
                         else {
@@ -172,7 +172,7 @@ public class Login5Activity extends AppCompatActivity{
                             Toast.makeText(getApplicationContext(), "회원 가입 성공",
                                     Toast.LENGTH_SHORT).show();
 
-                            Intent intent = new Intent(Login5Activity.this, MainActivity.class);
+                            Intent intent = new Intent(Login6Activity.this, MainActivity.class);
                             startActivity(intent);
                         }
                         else {
@@ -200,7 +200,7 @@ public class Login5Activity extends AppCompatActivity{
                             Toast.makeText(getApplicationContext(), "회원 가입 성공",
                                     Toast.LENGTH_SHORT).show();
 
-                            Intent intent = new Intent(Login5Activity.this, MainActivity.class);
+                            Intent intent = new Intent(Login6Activity.this, MainActivity.class);
                             startActivity(intent);
                         }
                         else {
