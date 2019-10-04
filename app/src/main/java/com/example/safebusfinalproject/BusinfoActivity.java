@@ -30,7 +30,7 @@ public class BusinfoActivity extends AppCompatActivity {
         velocity = (TextView)findViewById(R.id.velocity);
 
 
-        final String id = null; // 로그인 액티비티에서 받아온 id값
+        final String id = "1234"; // 로그인 액티비티에서 받아온 id값
 
         infoBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -46,6 +46,8 @@ public class BusinfoActivity extends AppCompatActivity {
 
                     BusinfoDBActivity task = new BusinfoDBActivity();
                     result = task.execute(id).get();
+
+                    Log.i("result",result);
 
                 } catch (Exception e) {
                     Log.i("DBtest", ".....ERROR.....!");

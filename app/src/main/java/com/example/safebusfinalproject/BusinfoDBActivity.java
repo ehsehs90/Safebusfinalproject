@@ -16,6 +16,7 @@ import java.net.URL;
 public class BusinfoDBActivity extends AsyncTask<String, Void, String> {
 
     String sendMsg, receiveMsg;
+    BusinfoVO result = new BusinfoVO();
 
     @Override
     protected String doInBackground(String... st) {
