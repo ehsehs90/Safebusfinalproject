@@ -13,40 +13,71 @@
 
         <TextView
             android:id="@+id/businfo1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="300px"
+            android:layout_height="100px"
             android:layout_marginStart="100dp"
             android:layout_marginTop="120dp"
             android:text="차량 습도 :" />
         <TextView
+            android:id="@+id/humidity"
+            android:layout_width="300px"
+            android:layout_height="100px"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="120dp"
+            android:text="0 %" />
+
+        <TextView
             android:id="@+id/businfo2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="300px"
+            android:layout_height="100px"
             android:layout_marginStart="100dp"
             android:layout_marginTop="160dp"
             android:text="차량 온도 :" />
         <TextView
+            android:id="@+id/temperature"
+            android:layout_width="300px"
+            android:layout_height="100px"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="160dp"
+            android:text="0 ℃" />
+
+        <TextView
             android:id="@+id/businfo3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="300px"
+            android:layout_height="100px"
             android:layout_marginStart="100dp"
             android:layout_marginTop="200dp"
             android:text="차량 현재 위치 :" />
         <TextView
+            android:id="@+id/location"
+            android:layout_width="300px"
+            android:layout_height="100px"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="200dp"
+            android:text="0" />
+
+        <TextView
             android:id="@+id/businfo4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="300px"
+            android:layout_height="100px"
             android:layout_marginStart="100dp"
             android:layout_marginTop="240dp"
-            android:text="차량 습도 :" />
+            android:text="차량 속도 :" />
         <TextView
-            android:id="@+id/businfo5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
-            android:layout_marginTop="280dp"
-            android:text="차량 습도 :" />
+            android:id="@+id/velocity"
+            android:layout_width="300px"
+            android:layout_height="100px"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="240dp"
+            android:text="0 km/h" />
 
+        <Button
+            android:id="@+id/infoBtn"
+            android:layout_width="300px"
+            android:layout_height="130px"
+            android:layout_marginTop="320dp"
+            android:layout_marginLeft="130dp"
+            android:text="조회하기"/>
 
     </FrameLayout>
 

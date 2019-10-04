@@ -27,6 +27,7 @@
         <activity android:name=".BusinfoActivity" />
         <activity android:name=".trash.Login4Activity" />
         <activity android:name=".Login5Activity" />
+        <activity android:name=".Login6Activity" />
         <activity android:name=".trash.PredictImageActivity" />
 
         <service

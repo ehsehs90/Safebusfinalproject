@@ -112,6 +112,9 @@ public class LoginActivity extends AppCompatActivity {
 
                 try {
                     String result;
+                    String resultLogin;
+                    String resultStation;
+
                     String id = input_ID.getText().toString();
                     String pw = input_PW.getText().toString();
 
@@ -122,7 +125,13 @@ public class LoginActivity extends AppCompatActivity {
 
                     result = logindb.execute(id, pw).get();
 
-                    if (result.equals("succes")){
+                    resultLogin = result.substring(0, 7);
+                    Log.i("resultLogin",resultLogin);
+
+                    resultStation = result.substring(7, 8);
+                    Log.i("resultLogin",resultStation);
+
+                    if (resultLogin.equals("success")){
                         Log.i("DBtest","토스트");
                         Toast.makeText(LoginActivity.this,
                                 "로그인 성공!",
@@ -135,8 +144,9 @@ public class LoginActivity extends AppCompatActivity {
                     }
 
                     Intent i = new Intent();
+                    i.putExtra("station",resultStation);
                     ComponentName cname = new ComponentName("com.example.safebusfinalproject",
-                            "com.example.safebusfinalproject.LogoutActivity");
+                            "com.example.safebusfinalproject.MainActivity");
                     i.setComponent(cname);
 
                     startActivity(i);
