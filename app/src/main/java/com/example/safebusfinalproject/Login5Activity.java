@@ -1,5 +1,8 @@
 package com.example.safebusfinalproject;
 
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +14,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.safebusfinalproject.registerVO.RDriverVO;
@@ -20,19 +24,20 @@ import com.example.safebusfinalproject.registerVO.RTeacherVO;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Login5Activity extends AppCompatActivity{
+public class Login5Activity extends AppCompatActivity {
 
     long mNow;
     Date mDate;
     SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-    String fileName;
+    String fileName=null;
 
-    TextView text1,text2;
+    TextView text1, text2;
     RadioGroup rGroup1, rGroupuser, rGroupgender;
     RadioButton Rdo50, Rdo60, Rdo70, driver, teacher, parents;
     Button btnRegister;
-    ImageView imgPet,driverimage;
-    EditText babyName,myname,phonenum,idet,pwet,address,license,carNum;
+    ImageView imgPet, driverimage;
+    EditText babyName, myname, phonenum, idet, pwet, address, license, carNum;
+    Button goBtn;
 
     RadioButton userArray[] = new RadioButton[3];
     RadioButton rArray[] = new RadioButton[3];
@@ -44,10 +49,46 @@ public class Login5Activity extends AppCompatActivity{
     String chk = null;
     String chk2 = null;
 
+    SharedPreferences pref;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login5);
+
+        pref = getSharedPreferences("pref", MODE_PRIVATE);
+        final SharedPreferences.Editor editor = pref.edit();
+        if (pref.getString("id", "NO").equals("NO")) {
+            editor.putString("id", "NO");
+            editor.putString("pw", "NO");
+            editor.putString("name", "NO");
+            editor.putString("phonenum", "NO");
+            editor.putString("license", "NO");
+            editor.putString("carNum", "NO");
+            editor.commit();
+
+        }
+        Log.i("??띠용???", pref.getString("id", "NO"));
+//        if(!pref.getString("id", "NO").equals("NO")){
+//            idet.setText(pref.getString("id","NO"));
+//            pwet.setText(pref.getString("pw","NO"));
+//            myname.setText(pref.getString("name","NO"));
+//            phonenum.setText(pref.getString("phonenum","NO"));
+//            license.setText(pref.getString("license","NO"));
+//            carNum.setText(pref.getString("carNum","NO"));
+//        }
+
+//        Intent receiveIntent;
+//       // Log.i("푸루울1111", receiveIntent.getStringExtra("realPath"));
+//        //String realPath = receiveIntent.getStringExtra("realPath");
+//        if ((receiveIntent= getIntent())!=null){
+//            String realPath = receiveIntent.getStringExtra("realPath");
+//            Log.i("푸루울", realPath);
+//        }else{
+//            Log.i("푸루울13313313313", "뿡빵");
+//
+//        }
         setTitle("회원가입");
 
         // 위젯을 변수에 대입
@@ -74,6 +115,7 @@ public class Login5Activity extends AppCompatActivity{
 
         imgPet = (ImageView) findViewById(R.id.ImgPet);
         driverimage = (ImageView) findViewById(R.id.driverimage);
+        goBtn = (Button) findViewById(R.id.goBtn);
 
         myname = (EditText) findViewById(R.id.name);
         phonenum = (EditText) findViewById(R.id.phoneNum);
@@ -85,6 +127,39 @@ public class Login5Activity extends AppCompatActivity{
 
         rGroupgender = (RadioGroup) findViewById(R.id.Rgroupgender);
 
+        goBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+//                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("id", idet.getText().toString());
+                editor.putString("pw", pwet.getText().toString());
+                editor.putString("name", myname.getText().toString());
+                editor.putString("phonenum", phonenum.getText().toString());
+                editor.putString("license", license.getText().toString());
+                editor.putString("carNum", carNum.getText().toString());
+                editor.commit();
+
+                Log.i("칠판", pref.getString("id", "NO"));
+//
+//                if(pref.getString("id", "NO").equals("NO")){
+//
+//
+//                }
+
+                Intent i = new Intent();
+                ComponentName cname = new ComponentName("com.example.safebusfinalproject",
+                        "com.example.safebusfinalproject.trash.PredictImageActivity");
+                i.setComponent(cname);
+                // startActivity(i);
+                startActivityForResult(i, 3000);
+
+                //출처: https://liveonthekeyboard.tistory.com/entry/안드로이드-startActivityForResult-onActivityResult-사용법 [키위남]
+
+            }
+        });
+
+
         rGroupgender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int id) {
@@ -93,7 +168,7 @@ public class Login5Activity extends AppCompatActivity{
                 final String strgender = select.getText().toString();
                 String[] gender = {"남아", "여아"};
 
-                Log.i("성별",strgender);
+                Log.i("성별", strgender);
 
                 chk2 = strgender;
 
@@ -104,7 +179,7 @@ public class Login5Activity extends AppCompatActivity{
         btnRegister.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 try {
-                    String resultstr = null,resultstr2 = null,resultstr3 = null;
+                    String resultstr = null, resultstr2 = null, resultstr3 = null;
                     String id = idet.getText().toString();
                     String pw = pwet.getText().toString();
                     String name = myname.getText().toString();
@@ -114,9 +189,9 @@ public class Login5Activity extends AppCompatActivity{
                     String license2 = license.getText().toString();
                     String carnum2 = carNum.getText().toString();
 
-                    Log.i("chk?",chk);
+                    Log.i("chk?", chk);
 
-                    if(chk.equals("학부모")) {
+                    if (chk.equals("학부모")) {
 
                         voparents.setMemberID(id);
                         voparents.setMemberPW(pw);
@@ -131,8 +206,7 @@ public class Login5Activity extends AppCompatActivity{
 
                         RParentsActivity task = new RParentsActivity();
                         resultstr = task.execute(voparents).get();
-                    }
-                    else if(chk.equals("보육교사")) {
+                    } else if (chk.equals("보육교사")) {
 
                         voteacher.setMemberID(id);
                         voteacher.setMemberPW(pw);
@@ -143,8 +217,7 @@ public class Login5Activity extends AppCompatActivity{
 
                         RTeacherActivity task2 = new RTeacherActivity();
                         resultstr2 = task2.execute(voteacher).get();
-                    }
-                    else if(chk.equals("운전기사")) {
+                    } else if (chk.equals("운전기사")) {
 
                         vodriver.setMemberID(id);
                         vodriver.setMemberPW(pw);
@@ -157,6 +230,10 @@ public class Login5Activity extends AppCompatActivity{
                         vodriver.setCarNumber(carnum2);
                         vodriver.setDriverPicture(fileName);
 
+                        Log.i("와꾸","nukkk");
+                        Log.i("와꾸",fileName);
+                        Log.i("와꾸","nukkk5561");
+
 
                         //"C:\\review\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\sendMsg2\\filestorage"+
 
@@ -164,12 +241,12 @@ public class Login5Activity extends AppCompatActivity{
                         resultstr3 = task3.execute(vodriver).get();
                     }
 
-                    Log.i("결과",resultstr);
-                    Log.i("결과2",resultstr2);
-                    Log.i("결과3",resultstr3);
+                    Log.i("결과", resultstr);
+                    Log.i("결과2", resultstr2);
+                    Log.i("결과3", resultstr3);
 
                 } catch (Exception e) {
-                    Log.i("DBtest", ".....ERROR.....!");
+                    Log.i("DBtest", e.toString());
                 }
             }
         });
@@ -189,6 +266,8 @@ public class Login5Activity extends AppCompatActivity{
                 Log.i("info1", struser);
 
                 if (select.isChecked() == true && struser.equals(userjob[0])) { // 운전기사
+
+
                     //Log.i("info3","if찍힘;");
                     text2.setVisibility(View.INVISIBLE);
                     rGroup1.setVisibility(View.INVISIBLE);
@@ -199,6 +278,18 @@ public class Login5Activity extends AppCompatActivity{
                     address.setVisibility(View.INVISIBLE);
                     license.setVisibility(View.VISIBLE);
                     carNum.setVisibility(View.VISIBLE);
+                    goBtn.setVisibility(View.VISIBLE);
+
+                    if (!pref.getString("id", "NO").equals("NO")) {
+                        idet.setText(pref.getString("id", "NO"));
+                        pwet.setText(pref.getString("pw", "NO"));
+                        myname.setText(pref.getString("name", "NO"));
+                        phonenum.setText(pref.getString("phonenum", "NO"));
+                        license.setText(pref.getString("license", "NO"));
+                        carNum.setText(pref.getString("carNum", "NO"));
+
+                        Log.i("돼요?", carNum.getText().toString());
+                    }
                 } else if (select.isChecked() == true && struser.equals(userjob[1])) { // 보육교사
                     //Log.i("info3","else찍힘;");
                     text2.setVisibility(View.INVISIBLE);
@@ -222,11 +313,11 @@ public class Login5Activity extends AppCompatActivity{
                             @Override
                             public void onClick(View view) {
                                 imgPet.setImageResource(draw[index]);
-                                if(index==0)
+                                if (index == 0)
                                     voparents.setStation("A");
-                                else if(index==1)
+                                else if (index == 1)
                                     voparents.setStation("B");
-                                else if(index==2)
+                                else if (index == 2)
                                     voparents.setStation("C");
                             }
                         });
@@ -250,23 +341,56 @@ public class Login5Activity extends AppCompatActivity{
 
     }
 
-    private String getTime(){
+    private String getTime() {
         mNow = System.currentTimeMillis();
         mDate = new Date(mNow);
         return mFormat.format(mDate);
     }
 
-    public void onRadioButtonClicked (View v){
+    public void onRadioButtonClicked(View v) {
         boolean checked = ((RadioButton) v).isChecked();
 
         if (checked) {
             Toast.makeText(getApplicationContext(), ((RadioButton) v).getText() + "checked",
                     Toast.LENGTH_SHORT).show();
-        }
-        else
+        } else
             Toast.makeText(getApplicationContext(), ((RadioButton) v).getText() + "unchecked",
                     Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+//        if(requestCode == 3000 ){
+//            Log.i("돈마려!","돈돈마려");
+//            Intent in = getIntent();
+//            String realPath = in.getStringExtra("realPath");
+//            if (resultCode == RESULT_OK) {
+//                switch (requestCode) {
+//                    // MainActivity 에서 요청할 때 보낸 요청 코드 (3000)
+//                    case 3000:
+//                        Log.i("돈마려!",realPath);
+//                        break;
+//                }
+//            }
+//        }
+
+        Log.i("돈마려94!","돈돈마려94");
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                // MainActivity 에서 요청할 때 보낸 요청 코드 (3000)
+                case 3000:
+//                    data = getIntent();
+                    String realPath = data.getStringExtra("realPath");
+                    fileName = realPath;
+                    Log.i("돈마려!95","123456");
+                    Log.i("돈마려!951111",realPath);
+                    Log.i("돈마려!951111",fileName);
+                    break;
+            }
         }
 
 
+    }
 }

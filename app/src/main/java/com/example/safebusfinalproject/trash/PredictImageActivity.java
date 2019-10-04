@@ -3,6 +3,7 @@ package com.example.safebusfinalproject.trash;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
+import androidx.core.view.KeyEventDispatcher;
 
 import android.Manifest;
 import android.app.Activity;
@@ -25,6 +26,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.safebusfinalproject.Login5Activity;
+import com.example.safebusfinalproject.MainActivity;
 import com.example.safebusfinalproject.R;
 
 import java.io.DataOutputStream;
@@ -45,6 +48,7 @@ public class PredictImageActivity extends AppCompatActivity {
     private Button doPredict_btn;
     private String myUri;
     private  TextView tvtv;
+    private String realPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,16 +91,69 @@ public class PredictImageActivity extends AppCompatActivity {
         doPredict_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if(myUri != null){
                     //PredictImageService
                     Intent i = new Intent();
                     ComponentName cname = new ComponentName("com.example.safebusfinalproject","com.example.safebusfinalproject.trash.PredictImageService");
                     i.setComponent(cname);
                     i.putExtra("IMG_URI", myUri);
+
                     startService(i);
+
+
+
+
+//                    Intent intent2 = new Intent(getApplicationContext(), Login5Activity.class);
+//                    //키 값으로 String이라는 이름을 지정하며 , 두번째 인자로 전송할 데이터 변수 지정   .putExtra("key",value);
+//                    intent2.putExtra("String",realPath);
+//
+//                    //키 값으로 ArrayList라는 이름으로 지정, 전송할 데이터 변수 지정 .putStringArrayListExtra("KEY",value);
+//                    //intent.putStringArrayListExtra("ArrayList", ArrData);
+//
+//                    //IntentPage Activity에 데이터를 전달.
+//                    Log.i("망했다",realPath);
+//                    startActivity(intent2);  //인텐트를 시작한다.
+
+
                 }
             }
         });
+
+//        doPredict_btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(),IntentPage.class);   //첫번째 인자 나의 클래스명, 두번째 인자 이동할 클래스명
+//
+//                //키 값으로 String이라는 이름을 지정하며 , 두번째 인자로 전송할 데이터 변수 지정   .putExtra("key",value);
+//                intent.putExtra("String",Data);
+//
+//                //키 값으로 ArrayList라는 이름으로 지정, 전송할 데이터 변수 지정 .putStringArrayListExtra("KEY",value);
+//                intent.putStringArrayListExtra("ArrayList", ArrData);
+//
+//                //IntentPage Activity에 데이터를 전달.
+//                startActivity(intent);  //인텐트를 시작한다.
+//            }
+//        });
+//        doPredict_btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(), Login5Activity.class);   //첫번째 인자 나의 클래스명, 두번째 인자 이동할 클래스명
+//
+//                //키 값으로 String이라는 이름을 지정하며 , 두번째 인자로 전송할 데이터 변수 지정   .putExtra("key",value);
+//                intent.putExtra("String",fileName);
+//
+//                //키 값으로 ArrayList라는 이름으로 지정, 전송할 데이터 변수 지정 .putStringArrayListExtra("KEY",value);
+//                //intent.putStringArrayListExtra("ArrayList", ArrData);
+//
+//                //IntentPage Activity에 데이터를 전달.
+//                Log.i("망했다",fileName);
+//                startActivity(intent);  //인텐트를 시작한다.
+//
+//            }
+//        });
+
+
 
 
     }
@@ -238,10 +295,20 @@ public class PredictImageActivity extends AppCompatActivity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        String msg = intent.getExtras().getString("haribo");
+        String msg = intent.getExtras().getString("realPath");
         Log.i("하리보" , msg);
         tvtv.setText(msg);
         Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
 
+        Intent mintent = new Intent();
+        ComponentName cname = new ComponentName("com.example.safebusfinalproject" ,"com.example.safebusfinalproject.Login5Activity");
+        mintent.setComponent(cname);
+        mintent.putExtra("realPath",msg);
+
+        Log.i("돈마려!","돈돈마려");
+        Log.i("돈마려!",msg);
+        setResult(RESULT_OK,mintent);
+        // startActivity(mintent);
+        finish();
     }
 }

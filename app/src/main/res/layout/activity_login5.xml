@@ -140,6 +140,16 @@
             android:hint="차량 번호 (ex.12가3456)"
             android:visibility="invisible"
             android:inputType="text" />
+        <Button
+            android:id="@+id/goBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|right"
+            android:layout_marginRight="250dp"
+            android:layout_marginTop="100dp"
+            android:background="@color/투명Button"
+            android:visibility="invisible"
+            android:text="호비작" />
 
         <EditText
             android:id="@+id/address"

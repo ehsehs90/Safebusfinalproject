@@ -67,15 +67,16 @@ public class PredictImageService extends Service {
 
             //Uri uri = intent.getParcelableExtra("IMG_URI");
             final String realPath = intent.getStringExtra("IMG_URI");
-            Log.i("Predict",realPath.toString());
+            Log.i("Predict23232323999999",realPath.toString());
             //String url = getFilePathForN(uri, PredictImageService.this);
             //Log.i("Predict",url);
+
 
             Thread t =new Thread(){
                 public void run() {
                     String url = "http://70.12.115.54:8090/sendmsg/NewFile.jsp";
                     HttpFileUpload(url,"",realPath);
-                    Log.i("Predict",realPath);
+                    Log.i("안드로이드에서 이 경로로 넘길게요!",realPath);
 
                     //C:\review\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\sendMsg2\sendMsg2\a 여기 저장됨
 
@@ -91,12 +92,11 @@ public class PredictImageService extends Service {
                     e.printStackTrace();
                 }
                 Log.i("하리보는 흰색이 맛있쪙", line);
-                resultIntent.putExtra("haribo", line);
+                resultIntent.putExtra("realPath", realPath);
                 //Log.i("하리보는 흰색이 맛있쪙", line);
             }catch (Exception e){
 
             }
-
 
             resultIntent.putExtra("ServiceToActivityData",
                    "새로운 Activity가 생성되었어요!");
@@ -162,12 +162,12 @@ public class PredictImageService extends Service {
                     bufferSize = Math.min(bytesAvailable, maxBufferSize);
                     bytesRead = mFileInputStream.read(buffer, 0, bufferSize);
                 }
-                Log.i("Predict","11");
+              //  Log.i("Predict","11");
 
                 dos.writeBytes(lineEnd);
                 dos.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
                 mFileInputStream.close();
-                Log.i("Predict","22");
+               /// Log.i("Predict","22");
 
                 dos.flush(); // finish upload...
                 if (conn.getResponseCode() == 200) {
@@ -175,7 +175,7 @@ public class PredictImageService extends Service {
                     BufferedReader reader = new BufferedReader(tmp);
                     StringBuffer stringBuffer = new StringBuffer();
 
-                    Log.i("Predict", "SISISI");
+                  //  Log.i("Predict", "SISISI");
                     while ((line = reader.readLine()) != null) {
                         stringBuffer.append(line);
                         Log.i("넘어온다고?" ,line);
