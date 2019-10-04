@@ -22,7 +22,8 @@
         <activity android:name=".trash.RegisterActivity" />
         <activity android:name=".trash.Login2Activity" />
         <activity android:name=".SeatActivity" />
-        <activity android:name=".trash.LoginActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".LogoutActivity" />
         <activity android:name=".BusinfoActivity" />
         <activity android:name=".trash.Login4Activity" />
         <activity android:name=".Login5Activity" />

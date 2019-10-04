@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.safebusfinalproject.trash.Login2Activity;
 import com.example.safebusfinalproject.trash.Login3Activity;
 import com.example.safebusfinalproject.trash.Login4Activity;
-import com.example.safebusfinalproject.trash.LoginActivity;
+import com.example.safebusfinalproject.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
 
