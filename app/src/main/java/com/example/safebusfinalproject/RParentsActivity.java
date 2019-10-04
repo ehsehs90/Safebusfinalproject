@@ -20,9 +20,9 @@ public class RParentsActivity extends AsyncTask<RParentsVO, Void, String> {
     protected String doInBackground(RParentsVO... rp) {
         try {
             String str;
-
+            Log.i("error","액티비티 들어옴");
             // 접속할 서버 주소 (이클립스에서 android.jsp 실행시 웹브라우저 주소)
-            URL url = new URL("http://70.12.115.53:8080/sendmsg/Rparentslogin.jsp");
+            URL url = new URL("http://70.12.115.78:80/safebus/parents/add.do");
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
@@ -36,7 +36,7 @@ public class RParentsActivity extends AsyncTask<RParentsVO, Void, String> {
                     + "&pw=" + rp[0].getMemberPW()  + "&name=" + rp[0].getMemberName()
                     + "&tel=" + rp[0].getMemberTel() + "&date=" + rp[0].getRegisterDate() + "&info=" + rp[0].getMemberinfo();
 
-            Log.i("wpqkf",sendMsg);
+            Log.i("error",sendMsg);
 
             osw.write(sendMsg);
             osw.flush();
@@ -52,9 +52,12 @@ public class RParentsActivity extends AsyncTask<RParentsVO, Void, String> {
                     buffer.append(str);
                 }
                 receiveMsg = buffer.toString();
+                Log.i("error",receiveMsg);
+                Log.i("error","addparetns 성공");
             } else {
                 // 통신 실패
                 Log.i("error",receiveMsg);
+                Log.i("error","addparents 실패 ");
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
