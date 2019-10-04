@@ -25,6 +25,7 @@ public class Login5Activity extends AppCompatActivity{
     long mNow;
     Date mDate;
     SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+    String fileName;
 
     TextView text1,text2;
     RadioGroup rGroup1, rGroupuser, rGroupgender;
@@ -154,6 +155,10 @@ public class Login5Activity extends AppCompatActivity{
 
                         vodriver.setDriverLicense(license2);
                         vodriver.setCarNumber(carnum2);
+                        vodriver.setDriverPicture(fileName);
+
+
+                        //"C:\\review\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\sendMsg2\\filestorage"+
 
                         RDriverActivity task3 = new RDriverActivity();
                         resultstr3 = task3.execute(vodriver).get();

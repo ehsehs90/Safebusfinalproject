@@ -146,6 +146,8 @@ public class PredictImageService extends Service {
                 dos.writeBytes(twoHyphens + boundary + lineEnd);
                 dos.writeBytes("Content-Disposition: form-data; name=\"file\";filename=\"" + fileName + "\"" + lineEnd);
                 dos.writeBytes(lineEnd);
+                Log.i("돈마려요",fileName);
+                Log.i("돈마려요2",lineEnd);
                 int bytesAvailable = mFileInputStream.available();
                 int maxBufferSize = 1024 * 1024;
                 int bufferSize = Math.min(bytesAvailable, maxBufferSize);
