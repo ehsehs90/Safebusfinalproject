@@ -25,7 +25,7 @@
         <activity android:name=".Login6Activity" />
         <activity android:name=".Login7Activity" />
         <activity android:name=".trash.PredictImageActivity" />
-
+        <activity android:name=".BusinfoActivity2" />
         <activity
             android:name=".ActSettings"
             android:label="@string/app_name" />
