@@ -149,7 +149,7 @@
             android:layout_marginTop="100dp"
             android:background="@color/투명Button"
             android:visibility="invisible"
-            android:text="호비작" />
+            android:text="면허등록" />
 
         <EditText
             android:id="@+id/address"

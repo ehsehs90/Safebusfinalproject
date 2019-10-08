@@ -30,6 +30,7 @@ public class BusinfoActivity extends AppCompatActivity {
         velocity = (TextView)findViewById(R.id.velocity);
 
 
+
         final String id = "1234"; // 로그인 액티비티에서 받아온 id값
 
         infoBtn.setOnClickListener(new View.OnClickListener() {

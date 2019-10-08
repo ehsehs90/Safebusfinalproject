@@ -30,6 +30,7 @@ public class Login5Activity extends AppCompatActivity {
     Date mDate;
     SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
     String fileName=null;
+    String fileName2 = null;
 
     TextView text1, text2;
     RadioGroup rGroup1, rGroupuser, rGroupgender;
@@ -228,14 +229,25 @@ public class Login5Activity extends AppCompatActivity {
 
                         vodriver.setDriverLicense(license2);
                         vodriver.setCarNumber(carnum2);
-                        vodriver.setDriverPicture(fileName);
+                        vodriver.setDriverPicture(fileName2);
+                        //vodirver에 fileName2 넣도록 바꿈 (10-08)
+                        //vodriver.setDriverPicture(fileName);
 
-                        Log.i("와꾸","nukkk");
-                        Log.i("와꾸",fileName);
-                        Log.i("와꾸","nukkk5561");
+                        Log.i("운전자사진","nukkk");
+                        Log.i("운전자사진",fileName);
+                        Log.i("운전자사진","지금은fileName이 넘어가는중..");
+
+                        // /storage/emulated/0/DCIM/MYAPP/IMG_20191008_094733995832093892601433.png
+
+                        String fileName2="";
+                        fileName2=fileName.substring(30);
+                        Log.i("fileName잘라서 DB에넣기",fileName2);
+                        Log.i("운전자사진2",fileName2);
 
 
-                        //"C:\\review\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\sendMsg2\\filestorage"+
+
+                        // 여기 파일 경로로 사진이 서버를 통해 넘어가게 됩니다다
+                        //"C:\\review\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\wtpwebapps\\sendMsg2\\filestorage"+
 
                         RDriverActivity task3 = new RDriverActivity();
                         resultstr3 = task3.execute(vodriver).get();
@@ -384,9 +396,16 @@ public class Login5Activity extends AppCompatActivity {
 //                    data = getIntent();
                     String realPath = data.getStringExtra("realPath");
                     fileName = realPath;
-                    Log.i("돈마려!95","123456");
-                    Log.i("돈마려!951111",realPath);
-                    Log.i("돈마려!951111",fileName);
+                   //Log.i("돈마려!95","123456");
+                    //Log.i("돈마려!realPath",realPath);
+                    //Log.i("돈마려!fileName",fileName);
+
+
+                    //여기 3줄 추가함(10-08)
+                    fileName2=fileName.substring(30);
+                    Log.i("fileName잘라서 DB에넣기",fileName2);
+                    Log.i("와꾸223232",fileName2);
+
                     break;
             }
         }

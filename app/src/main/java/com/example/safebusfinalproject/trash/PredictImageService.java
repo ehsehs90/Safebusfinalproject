@@ -67,7 +67,7 @@ public class PredictImageService extends Service {
 
             //Uri uri = intent.getParcelableExtra("IMG_URI");
             final String realPath = intent.getStringExtra("IMG_URI");
-            Log.i("Predict23232323999999",realPath.toString());
+            Log.i("스마트폰realPath",realPath.toString());
             //String url = getFilePathForN(uri, PredictImageService.this);
             //Log.i("Predict",url);
 
@@ -76,7 +76,7 @@ public class PredictImageService extends Service {
                 public void run() {
                     String url = "http://70.12.115.54:8090/sendmsg/NewFile.jsp";
                     HttpFileUpload(url,"",realPath);
-                    Log.i("안드로이드에서 이 경로로 넘길게요!",realPath);
+                    Log.i("스마트폰realPath로 넘길게요",realPath);
 
                     //C:\review\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\sendMsg2\sendMsg2\a 여기 저장됨
 
@@ -114,6 +114,8 @@ public class PredictImageService extends Service {
         Log.i("ServiceExam", "onDestroy()호출!!");
     }
 
+    //Http에 파일업로드 하는 부분
+    //
     public void HttpFileUpload(String urlString, String params, String fileName) {
         String lineEnd = "\r\n";
         String twoHyphens = "--";
@@ -146,8 +148,8 @@ public class PredictImageService extends Service {
                 dos.writeBytes(twoHyphens + boundary + lineEnd);
                 dos.writeBytes("Content-Disposition: form-data; name=\"file\";filename=\"" + fileName + "\"" + lineEnd);
                 dos.writeBytes(lineEnd);
-                Log.i("돈마려요",fileName);
-                Log.i("돈마려요2",lineEnd);
+                Log.i("Http_writedata_filename",fileName);
+                Log.i("Http_writedata_lineend",lineEnd);
                 int bytesAvailable = mFileInputStream.available();
                 int maxBufferSize = 1024 * 1024;
                 int bufferSize = Math.min(bytesAvailable, maxBufferSize);

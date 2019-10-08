@@ -21,7 +21,7 @@
 
     <Button
         android:id="@+id/doPredict_btn"
-        android:text="이미지 예측하기"
+        android:text="면허로 등록하기"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
