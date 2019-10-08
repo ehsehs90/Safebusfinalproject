@@ -301,7 +301,7 @@ public class PredictImageActivity extends AppCompatActivity {
         Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
 
         Intent mintent = new Intent();
-        ComponentName cname = new ComponentName("com.example.safebusfinalproject" ,"com.example.safebusfinalproject.Login5Activity");
+        ComponentName cname = new ComponentName("com.example.safebusfinalproject" ,"com.example.safebusfinalproject.Login7Activity");
         mintent.setComponent(cname);
         mintent.putExtra("realPath",msg);
 

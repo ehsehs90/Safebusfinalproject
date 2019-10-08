@@ -74,7 +74,7 @@ public class PredictImageService extends Service {
 
             Thread t =new Thread(){
                 public void run() {
-                    String url = "http://70.12.115.54:8090/sendmsg/NewFile.jsp";
+                    String url = "http://70.12.115.53:8080/sendmsg/imgdriver.jsp";
                     HttpFileUpload(url,"",realPath);
                     Log.i("스마트폰realPath로 넘길게요",realPath);
 
