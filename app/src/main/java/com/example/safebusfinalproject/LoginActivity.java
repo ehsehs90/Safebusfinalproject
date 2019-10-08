@@ -161,7 +161,7 @@ public class LoginActivity extends AppCompatActivity {
                     i.putExtras(bundle);
 
                     ComponentName cname = new ComponentName("com.example.safebusfinalproject",
-                            "com.example.safebusfinalproject.MainActivity");
+                            "com.example.safebusfinalproject.MapViewActivity");
                     i.setComponent(cname);
 
                     startActivity(i);

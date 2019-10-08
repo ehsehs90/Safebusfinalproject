@@ -28,13 +28,15 @@ import java.util.concurrent.ExecutionException;
 public class RouteOptimizationVia {
     private ViaPointVO startPoint;
     private ViaPointVO endPoint;
+    private String starttime;
 
     public RouteOptimizationVia() {
     }
 
-    public RouteOptimizationVia(ViaPointVO startPoint, ViaPointVO endPoint) {
+    public RouteOptimizationVia(ViaPointVO startPoint, ViaPointVO endPoint, String starttime) {
         this.startPoint = startPoint;
         this.endPoint = endPoint;
+        this.starttime = starttime;
     }
 
     ArrayList<HashMap> jsonList = new ArrayList<>(); //return 해줄 route 정보들
@@ -195,9 +197,9 @@ public class RouteOptimizationVia {
             vObj.put("startX",startPoint.getViaX());
             vObj.put("startY",startPoint.getViaY());
 
-            SimpleDateFormat time = new SimpleDateFormat("yyyyMMddHHmm");
-            String startTime = time.format(new Date());
-            vObj.put("startTime",startTime);
+            //SimpleDateFormat time = new SimpleDateFormat("yyyyMMddHHmm");
+            //String startTime = time.format(new Date());
+            vObj.put("startTime",starttime);
             vObj.put("endName","도착");
             vObj.put("endX",endPoint.getViaX());
             vObj.put("endY",endPoint.getViaY());

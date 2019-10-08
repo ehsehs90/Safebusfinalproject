@@ -39,7 +39,7 @@ public class RequestHttpURLConnection {
     RouteOptimization routeOptimization;
     RouteOptimizationVia routeOptimizationVia;
 
-    public ArrayList<HashMap> request(String st, String station) throws IOException, JSONException {
+    public ArrayList<HashMap> request(String st, String station, String starttime) throws IOException, JSONException {
         ArrayList<HashMap> jsonList = new ArrayList<>(); //return 해줄 route 정보들
         //JSONObject sendJsonObj = new JSONObject();
         state = st;
@@ -71,7 +71,7 @@ public class RequestHttpURLConnection {
                 }
                 jsonList = routeOptimization.setConn(startPoint, endPoint);
             }else{
-                routeOptimizationVia = new RouteOptimizationVia(startPoint,endPoint);
+                routeOptimizationVia = new RouteOptimizationVia(startPoint,endPoint,starttime);
                 jsonList = routeOptimizationVia.setConn(state,result);
 
             }

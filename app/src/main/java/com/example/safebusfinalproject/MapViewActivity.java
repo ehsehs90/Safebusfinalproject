@@ -3,16 +3,20 @@ package com.example.safebusfinalproject;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.safebusfinalproject.mapVO.ViaPointVO;
 import com.skt.Tmap.TMapData;
 import com.skt.Tmap.TMapMarkerItem;
 import com.skt.Tmap.TMapPoint;
@@ -20,6 +24,7 @@ import com.skt.Tmap.TMapPolyLine;
 import com.skt.Tmap.TMapTapi;
 import com.skt.Tmap.TMapView;
 
+import org.json.JSONException;
 import org.w3c.dom.Text;
 import org.xml.sax.SAXException;
 
@@ -42,6 +47,8 @@ public class MapViewActivity extends AppCompatActivity {
     Bitmap bitmap;
     Bitmap startbit;
     Bitmap endbit;
+    Bitmap nowbit;
+    TMapMarkerItem nowItem;
 
     TextView res_textview;
     LinearLayout Tmap;
@@ -56,17 +63,18 @@ public class MapViewActivity extends AppCompatActivity {
         private ArrayList<TMapPoint> passList;
         private String state;
 
-        String starttime;
+        Date starttime;
         String arrivetime;
 
         String startMsg = "";
         String endMsg = "";
 
-        public DrawPolyLine(TMapPoint start, TMapPoint end, ArrayList<TMapPoint> passList, String state) {
+        public DrawPolyLine(TMapPoint start, TMapPoint end, ArrayList<TMapPoint> passList, String state, Date starttime) {
             this.start = start;
             this.end = end;
             this.passList = passList;
             this.state = state;
+            this.starttime = starttime;
         }
 
         public void run(){
@@ -169,13 +177,15 @@ public class MapViewActivity extends AppCompatActivity {
                 endMsg = "유치원도착예정시간";
             }
 
-            //1. 출발시간
+/*            //1. 출발시간
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
 
             Date date = new Date();
             Calendar cal = Calendar.getInstance();
             cal.setTime(date);
-            starttime = formatter.format(date);
+            starttime = formatter.format(date);*/
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
+            final String startTime = formatter.format(starttime);
 
             //2. 도착시간
             String arrive= arriveTimes.get(arriveTimes.size()-1);
@@ -194,7 +204,7 @@ public class MapViewActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     res_textview = (TextView)findViewById(R.id.res_textview);
-                    String msg = startMsg + " : "+ starttime + "\n"+ endMsg + " : " + arrivetime;
+                    String msg = startMsg + " : "+ startTime + "\n"+ endMsg + " : " + arrivetime;
                     res_textview.setText(msg);
                     //res_textview.setText(arriveTime);
                 }
@@ -205,20 +215,27 @@ public class MapViewActivity extends AppCompatActivity {
     class TMapNav implements Runnable{
         private String state; //등.하원 구분
         private String station_num;
+        private Date start_time;
 
-        public TMapNav() {
-
+        public TMapNav(String station_num, Date start_time) {
+            this.station_num = station_num;
+            this.start_time = start_time;
         }
 
         public void run(){
             try {
-                state ="gokinder"; //하원
-                //state ="gokinder"; //등원
-                station_num = "5";
+                //state ="gohome"; //하원
+                state ="gokinder"; //등원
+                //station_num = "5";
                 ArrayList<HashMap> result;
                 RequestHttpURLConnection requestHttpURLConnection
                         = new RequestHttpURLConnection();
-                result = requestHttpURLConnection.request(state,station_num);
+
+
+                SimpleDateFormat sdtime = new SimpleDateFormat("yyyyMMddHHmm");
+                String starttime = sdtime.format(start_time);
+                Log.d("sisisisisi",starttime);
+                result = requestHttpURLConnection.request(state,station_num, starttime);
 
                 Double start_lat = Double.valueOf(result.get(0).get("latitude").toString());
                 Double start_long = Double.valueOf(result.get(0).get("longitude").toString());
@@ -237,18 +254,15 @@ public class MapViewActivity extends AppCompatActivity {
                     Log.d("kkkkkk", result.get(1).get("totalTime").toString());
                     int totalTime = Integer.valueOf(result.get(1).get("totalTime").toString());
 
-                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
+                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분");
 
-                    Date date = new Date();
                     Calendar cal = Calendar.getInstance();
-                    cal.setTime(date);
-                    String starttime = formatter.format(date);
-                    Log.d("kkkkk",starttime);
+                    cal.setTime(start_time);
+                    String startTime = formatter.format(start_time);
                     cal.add(Calendar.SECOND, totalTime);
                     String arrivetime = formatter.format(cal.getTime());
-                    Log.d("kkkkk",arrivetime);
 
-                    TMapLine tMapline = new TMapLine(start_lat,start_long,end_lat,end_long, starttime, arrivetime, state);
+                    TMapLine tMapline = new TMapLine(start_lat,start_long,end_lat,end_long, startTime, arrivetime, state);
                     Thread tmapLineThread = new Thread(tMapline);
                     tmapLineThread.start();
                 }else{
@@ -271,7 +285,7 @@ public class MapViewActivity extends AppCompatActivity {
                     TMapPoint start = new TMapPoint(start_lat,start_long);
                     TMapPoint end = new TMapPoint(end_lat,end_long);
 
-                    DrawPolyLine drawPolyLine = new DrawPolyLine(start,end,passList,state);
+                    DrawPolyLine drawPolyLine = new DrawPolyLine(start,end,passList,state,start_time);
                     Thread t = new Thread(drawPolyLine);
                     t.start();
                 }
@@ -369,6 +383,11 @@ public class MapViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_view);
 
+        Intent intent = getIntent(); /*데이터 수신*/
+
+        //String station = intent.getExtras().getString("station"); /*String형*/
+        String station = "5";
+
         Tmap = (LinearLayout)findViewById(R.id.tmap_view);
         tMapView = new TMapView(this);
 
@@ -376,17 +395,53 @@ public class MapViewActivity extends AppCompatActivity {
 
         //tMapView.setSKTMapApiKey("87e1a7c5-b8fc-4078-948b-c3c9f00927e1");
         tMapView.setCenterPoint( 127.036174,37.500138); //강남파이낸스 센터
-        //tMapTapi = new TMapTapi(this);
 
+        Button nowLoc = (Button)findViewById(R.id.nowloc);
         // 마커 아이콘
         bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.marker2);
         startbit = BitmapFactory.decodeResource(getResources(), R.drawable.start);
         endbit = BitmapFactory.decodeResource(getResources(), R.drawable.end);
+        nowbit = BitmapFactory.decodeResource(getResources(), R.drawable.bus);
 
+        //1. 출발시간(db에서 가져오던가 can에서 바로 가져오던가)
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
+        //String starttime = formatter.format(new Date());
+        Date starttime = new Date();
 
-        TMapNav tmapnav = new TMapNav();
+        //Log.d("sisisisisi", starttime);
+
+        TMapNav tmapnav = new TMapNav(station,starttime);
         Thread tmapThread = new Thread(tmapnav);
         tmapThread.start();
+
+        nowLoc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 버튼을 누르면 현재 위치 마커로 표시
+                TMapPoint nowPoint = new TMapPoint(0,0);
+                LocationURLConnection locationURLConnection =
+                        new LocationURLConnection();
+                String carNum = "123가456";
+                Log.d("sisisisi","hi");
+                /*try {
+                    nowPoint = locationURLConnection.getNowInfo(carNum);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } */
+                nowPoint.setLatitude(37.501572);
+                nowPoint.setLongitude(127.039659);
+
+                //시작점, 도착점 마커찍기
+                tMapView.removeMarkerItem("nowItem");
+                nowItem = new TMapMarkerItem();
+                nowItem.setIcon(nowbit); // 마커 아이콘 지정
+                nowItem.setPosition(0.5f, 0.5f); // 마커의 중심점을 중앙, 하단으로 설정
+                nowItem.setTMapPoint( nowPoint ); // 마커의 좌표 지정
+                nowItem.setName("nPoint"); // 마커의 타이틀 지정
+                tMapView.addMarkerItem("nowItem", nowItem); // 지도에 마커 추가
+                tMapView.removeAllMarkerItem();
+            }
+        });
 
         Tmap.addView(tMapView);
     }
