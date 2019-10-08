@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // 버튼을 눌렀을 때 서비스를 생성하고 실행.
 
-                Intent i = new Intent(MainActivity.this, Login6Activity.class);
+                Intent i = new Intent(MainActivity.this, Login7Activity.class);
                 startActivity(i);
 
             }
