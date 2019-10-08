@@ -114,6 +114,8 @@ public class LoginActivity extends AppCompatActivity {
                     String result;
                     String resultLogin;
                     String resultStation;
+                    String resultCarnumber;
+
 
                     String id = input_ID.getText().toString();
                     String pw = input_PW.getText().toString();
@@ -125,26 +127,39 @@ public class LoginActivity extends AppCompatActivity {
 
                     result = logindb.execute(id, pw).get();
 
-                    resultLogin = result.substring(0, 7);
-                    Log.i("resultLogin",resultLogin);
+                    //resultLogin = result.substring(0, 7);
+                   // Log.i("resultLogin",resultLogin);
+                    //resultStation = result.substring(7, 8);
+                   // Log.i("resultLogin",resultStation);
 
-                    resultStation = result.substring(7, 8);
+                    String[] receiveMsg = result.split("/");
+                    resultLogin = receiveMsg[0];
+                    Log.i("resultLogin",resultLogin);
+                    resultStation = receiveMsg[1];
                     Log.i("resultLogin",resultStation);
+                    resultCarnumber = receiveMsg[2];
+                    Log.i("resultLogin",resultCarnumber);
 
                     if (resultLogin.equals("success")){
-                        Log.i("DBtest","토스트");
+                        Log.i("resultLogin","로그인 성공");
                         Toast.makeText(LoginActivity.this,
                                 "로그인 성공!",
                                 Toast.LENGTH_SHORT).show();
                     }else{
-                        Log.i("DBtest","토스트실패");
+                        Log.i("resultLogin","로그인 실패");
                         Toast.makeText(LoginActivity.this,
                                 "로그인 실패!",
                                 Toast.LENGTH_SHORT).show();
                     }
 
                     Intent i = new Intent();
-                    i.putExtra("station",resultStation);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("station",resultStation);
+                    bundle.putString("carNumber",resultCarnumber);
+
+                    //i.putExtra("station",resultStation);
+                    i.putExtras(bundle);
+
                     ComponentName cname = new ComponentName("com.example.safebusfinalproject",
                             "com.example.safebusfinalproject.MainActivity");
                     i.setComponent(cname);
@@ -152,7 +167,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(i);
 
                 } catch (Exception e) {
-                    Log.i("DBtest", ".....ERROR.....!");
+                    Log.i("resultLogin", "로그인 ERROR.....!");
                 }
 
             }
