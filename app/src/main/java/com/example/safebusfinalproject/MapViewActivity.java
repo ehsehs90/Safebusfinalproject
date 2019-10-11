@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.safebusfinalproject.mapVO.ViaPointVO;
+import com.skt.Tmap.TMapCircle;
 import com.skt.Tmap.TMapData;
 import com.skt.Tmap.TMapMarkerItem;
 import com.skt.Tmap.TMapPoint;
@@ -217,15 +218,16 @@ public class MapViewActivity extends AppCompatActivity {
         private String station_num;
         private Date start_time;
 
-        public TMapNav(String station_num, Date start_time) {
+        public TMapNav(String station_num, Date start_time, String state) {
             this.station_num = station_num;
             this.start_time = start_time;
+            this.state = state;
         }
 
         public void run(){
             try {
                 //state ="gohome"; //하원
-                state ="gokinder"; //등원
+                //state ="gokinder"; //등원
                 //station_num = "5";
                 ArrayList<HashMap> result;
                 RequestHttpURLConnection requestHttpURLConnection
@@ -384,9 +386,17 @@ public class MapViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_map_view);
 
         Intent intent = getIntent(); /*데이터 수신*/
+        Bundle bundle = intent.getExtras();
+        final String carNum = bundle.getString("carNumber");
+        String station = bundle.getString("station");
+        String state = "";
 
-        //String station = intent.getExtras().getString("station"); /*String형*/
-        String station = "5";
+        Button nowLoc = (Button)findViewById(R.id.nowloc);
+        // 마커 아이콘
+        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.marker2);
+        startbit = BitmapFactory.decodeResource(getResources(), R.drawable.start);
+        endbit = BitmapFactory.decodeResource(getResources(), R.drawable.end);
+        nowbit = BitmapFactory.decodeResource(getResources(), R.drawable.bus);
 
         Tmap = (LinearLayout)findViewById(R.id.tmap_view);
         tMapView = new TMapView(this);
@@ -396,12 +406,28 @@ public class MapViewActivity extends AppCompatActivity {
         //tMapView.setSKTMapApiKey("87e1a7c5-b8fc-4078-948b-c3c9f00927e1");
         tMapView.setCenterPoint( 127.036174,37.500138); //강남파이낸스 센터
 
-        Button nowLoc = (Button)findViewById(R.id.nowloc);
-        // 마커 아이콘
-        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.marker2);
-        startbit = BitmapFactory.decodeResource(getResources(), R.drawable.start);
-        endbit = BitmapFactory.decodeResource(getResources(), R.drawable.end);
-        nowbit = BitmapFactory.decodeResource(getResources(), R.drawable.bus);
+        // 강남파이낸스 근처에 있으면 유치원에서 출발, 아니면 도착점
+        TMapPoint sPoint = new TMapPoint(0,0);
+        LocationURLConnection locationURLConnection =
+                new LocationURLConnection();
+        Log.d("sisisisi","hi");
+        try {
+            sPoint = locationURLConnection.getNowInfo(carNum);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Double sPointX = sPoint.getLongitude();
+        Double sPointY = sPoint.getLatitude();
+
+        //Double sPointX = 127.036174;
+        //Double sPointY = 37.500138;
+        if(sPointX >= 127.035680 && sPointX <= 127.037660 && sPointY >= 37.499000 && sPointY <= 37.500620){ //유치원에서 출발
+            state = "gohome";
+            Log.d("sisisisi",state);
+        }else{
+            state = "gokinder";
+            Log.d("sisisisi",state);
+        }
 
         //1. 출발시간(db에서 가져오던가 can에서 바로 가져오던가)
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -410,7 +436,7 @@ public class MapViewActivity extends AppCompatActivity {
 
         //Log.d("sisisisisi", starttime);
 
-        TMapNav tmapnav = new TMapNav(station,starttime);
+        TMapNav tmapnav = new TMapNav(station,starttime,state);
         Thread tmapThread = new Thread(tmapnav);
         tmapThread.start();
 
@@ -421,15 +447,15 @@ public class MapViewActivity extends AppCompatActivity {
                 TMapPoint nowPoint = new TMapPoint(0,0);
                 LocationURLConnection locationURLConnection =
                         new LocationURLConnection();
-                String carNum = "123가456";
+                //carNum = "123가456";
                 Log.d("sisisisi","hi");
-                /*try {
+                try {
                     nowPoint = locationURLConnection.getNowInfo(carNum);
                 } catch (JSONException e) {
                     e.printStackTrace();
-                } */
-                nowPoint.setLatitude(37.501572);
-                nowPoint.setLongitude(127.039659);
+                }
+                //nowPoint.setLatitude(37.501572);
+                //nowPoint.setLongitude(127.039659);
 
                 //시작점, 도착점 마커찍기
                 tMapView.removeMarkerItem("nowItem");
@@ -439,7 +465,6 @@ public class MapViewActivity extends AppCompatActivity {
                 nowItem.setTMapPoint( nowPoint ); // 마커의 좌표 지정
                 nowItem.setName("nPoint"); // 마커의 타이틀 지정
                 tMapView.addMarkerItem("nowItem", nowItem); // 지도에 마커 추가
-                tMapView.removeAllMarkerItem();
             }
         });
 

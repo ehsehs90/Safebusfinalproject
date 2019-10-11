@@ -70,7 +70,7 @@ class getNowLocInfo extends AsyncTask<String, Void, String> {
             URL url = new URL("http://70.12.115.59:8080/sendmsg/nowLocInfo.jsp");
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
             conn.setRequestMethod("POST");
             OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
 
