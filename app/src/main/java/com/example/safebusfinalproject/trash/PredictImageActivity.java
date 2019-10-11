@@ -119,7 +119,7 @@ public class PredictImageActivity extends AppCompatActivity {
                 }
             }
         });
-
+//
 //        doPredict_btn.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -152,8 +152,8 @@ public class PredictImageActivity extends AppCompatActivity {
 //
 //            }
 //        });
-
-
+//
+//
 
 
     }
@@ -295,19 +295,17 @@ public class PredictImageActivity extends AppCompatActivity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        String msg = intent.getExtras().getString("realPath");
-        Log.i("하리보" , msg);
-        tvtv.setText(msg);
-        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
-
-        Intent mintent = new Intent();
-        ComponentName cname = new ComponentName("com.example.safebusfinalproject" ,"com.example.safebusfinalproject.Login7Activity");
-        mintent.setComponent(cname);
-        mintent.putExtra("realPath",msg);
-
-        Log.i("돈마려!","돈돈마려");
-        Log.i("돈마려!",msg);
-        setResult(RESULT_OK,mintent);
+//        String msg = intent.getExtras().getString("realPath");
+//        Log.i("하리보" , msg);
+//        tvtv.setText(msg);
+//        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+//
+//        Intent mintent = new Intent();
+//        ComponentName cname = new ComponentName("com.example.safebusfinalproject" ,"com.example.safebusfinalproject.Login7Activity");
+//        mintent.setComponent(cname);
+//        mintent.putExtra("realPath",msg);
+//           Log.i("돈마려!",msg);
+//        setResult(RESULT_OK,mintent);
         // startActivity(mintent);
         finish();
     }

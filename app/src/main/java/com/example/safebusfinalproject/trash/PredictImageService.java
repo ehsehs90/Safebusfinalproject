@@ -91,8 +91,8 @@ public class PredictImageService extends Service {
                 }catch(Exception e){
                     e.printStackTrace();
                 }
-                Log.i("하리보는 흰색이 맛있쪙", line);
-                resultIntent.putExtra("realPath", realPath);
+               // Log.i("하리보는 흰색이 맛있쪙", line);
+                //resultIntent.putExtra("realPath", realPath);
                 //Log.i("하리보는 흰색이 맛있쪙", line);
             }catch (Exception e){
 
