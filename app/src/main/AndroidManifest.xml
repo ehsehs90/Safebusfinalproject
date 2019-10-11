@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".BusinfoVO"></activity>
+        <activity android:name=".businfoVO.BusinfoVO"></activity>
         <activity android:name=".MapViewActivity" />
         <activity android:name=".trash.Login3Activity" />
         <activity android:name=".SendMSGActivity" />

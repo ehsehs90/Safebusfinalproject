@@ -47,6 +47,15 @@
             android:layout_marginRight="180dp"
             android:background="@color/투명Button"
             android:text="로그인3" />
+
+        <Button
+            android:id="@+id/kungkang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginRight="180dp"
+            android:background="@color/투명Button"
+            android:text="꿍깡꿍깡중" />
 <!--        <Button-->
 <!--            android:id="@+id/goBtn"-->
 <!--            android:layout_width="wrap_content"-->

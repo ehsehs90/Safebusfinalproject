@@ -1,4 +1,4 @@
-package com.example.safebusfinalproject;
+package com.example.safebusfinalproject.businfoVO;
 
 public class BusinfoVO {
 

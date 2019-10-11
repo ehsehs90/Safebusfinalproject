@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <FrameLayout
+        android:id="@+id/busarea"
+        android:layout_width="match_parent"
+        android:layout_height="1400px"
+        android:background="@drawable/busbusbang">
+
+        <TextView
+            android:id="@+id/businfo1"
+            android:layout_width="300px"
+            android:layout_height="100px"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="120dp"
+            android:text="차량 습도 :" />
+        <TextView
+            android:id="@+id/humidity"
+            android:layout_width="300px"
+            android:layout_height="100px"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="120dp"
+            android:text="0 %" />
+
+        <TextView
+            android:id="@+id/businfo2"
+            android:layout_width="300px"
+            android:layout_height="100px"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="160dp"
+            android:text="차량 온도 :" />
+        <TextView
+            android:id="@+id/temperature"
+            android:layout_width="300px"
+            android:layout_height="100px"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="160dp"
+            android:text="0 ℃" />
+
+        <TextView
+            android:id="@+id/businfo3"
+            android:layout_width="300px"
+            android:layout_height="100px"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="200dp"
+            android:text="차량 현재 위치 :" />
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="300px"
+            android:layout_height="100px"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="200dp"
+            android:text="0" />
+
+        <TextView
+            android:id="@+id/businfo4"
+            android:layout_width="300px"
+            android:layout_height="100px"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="240dp"
+            android:text="차량 속도 :" />
+        <TextView
+            android:id="@+id/velocity"
+            android:layout_width="300px"
+            android:layout_height="100px"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="240dp"
+            android:text="0 km/h" />
+
+        <Button
+            android:id="@+id/infoBtn"
+            android:layout_width="300px"
+            android:layout_height="130px"
+            android:layout_marginTop="320dp"
+            android:layout_marginLeft="130dp"
+            android:text="조회하기"/>
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:id="@+id/image_pic"/>
+
+
+
+        <!--        <Button-->
+        <!--            android:id="@+id/BackBtn1"-->
+        <!--            android:onClick="onClick"-->
+        <!--            android:background="@color/Button"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:textColor="#fff"-->
+        <!--            android:layout_centerInParent="true"-->
+        <!--            android:layout_marginEnd="8dp"-->
+        <!--            android:padding="2px"-->
+        <!--            android:radius="4dp"-->
+        <!--            android:text="뒤로가기" />-->
+
+        <!--        <Button-->
+        <!--            android:id="@+id/messageBtn"-->
+        <!--            android:background="@color/Button"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:textColor="#fff"-->
+        <!--            android:layout_centerInParent="true"-->
+        <!--            android:layout_marginEnd="8dp"-->
+        <!--            android:padding="2px"-->
+        <!--            android:radius="4dp"-->
+        <!--            android:text="" />-->
+
+        <!--        <Button-->
+        <!--            android:id="@+id/carinfoBtn"-->
+        <!--            android:background="@color/Button"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:textColor="#fff"-->
+        <!--            android:layout_centerInParent="true"-->
+        <!--            android:layout_marginEnd="8dp"-->
+        <!--            android:padding="2px"-->
+        <!--            android:radius="4dp"-->
+        <!--            android:text="" />-->
+
+        <!--        <Button-->
+        <!--            android:id="@+id/settingBtn"-->
+        <!--            android:background="@color/Button"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:textColor="#fff"-->
+        <!--            android:layout_centerInParent="true"-->
+        <!--            android:layout_marginEnd="8dp"-->
+        <!--            android:padding="2px"-->
+        <!--            android:radius="4dp"-->
+        <!--            android:text="" />-->
+    </LinearLayout>
+
+</LinearLayout>

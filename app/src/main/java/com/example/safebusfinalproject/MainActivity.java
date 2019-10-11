@@ -34,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
 //        Button goBtn = (Button)findViewById(R.id.goBtn);
         Button login5Btn = (Button)findViewById(R.id.login5Btn);
         Button login6Btn = (Button)findViewById(R.id.login6Btn);
+        Button kungkang = (Button)findViewById(R.id.kungkang);
+
+        //kungkang
 
 
 //        goBtn.setOnClickListener(new View.OnClickListener() {
@@ -47,6 +50,16 @@ public class MainActivity extends AppCompatActivity {
 //
 //            }
 //        });
+        kungkang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 버튼을 눌렀을 때 서비스를 생성하고 실행.
+
+                Intent i = new Intent(MainActivity.this, BusinfoActivity2.class);
+                startActivity(i);
+
+            }
+        });
 
         // (Android의 전형적인 event처리방식)
         settingBtn.setOnClickListener(new View.OnClickListener() {
@@ -165,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // 버튼을 눌렀을 때 서비스를 생성하고 실행.
 
-                Intent i = new Intent(MainActivity.this, Login7Activity.class);
+                Intent i = new Intent(MainActivity.this, Login6Activity.class);
                 startActivity(i);
 
             }
