@@ -79,7 +79,6 @@ public class PredictImageService extends Service {
                     Log.i("스마트폰realPath로 넘길게요",realPath);
 
                     //C:\review\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\sendMsg2\sendMsg2\a 여기 저장됨
-
                 }
 
             };
@@ -95,12 +94,10 @@ public class PredictImageService extends Service {
                 //resultIntent.putExtra("realPath", realPath);
                 //Log.i("하리보는 흰색이 맛있쪙", line);
             }catch (Exception e){
-
             }
 
             resultIntent.putExtra("ServiceToActivityData",
                    "새로운 Activity가 생성되었어요!");
-
             startActivity(resultIntent);
         }
         //return Service.START_NOT_STICKY; //강제종료되면 자동적으로 재시작 안함.
@@ -172,20 +169,20 @@ public class PredictImageService extends Service {
                /// Log.i("Predict","22");
 
                 dos.flush(); // finish upload...
-                if (conn.getResponseCode() == 200) {
-                    InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");
-                    BufferedReader reader = new BufferedReader(tmp);
-                    StringBuffer stringBuffer = new StringBuffer();
-
-                  //  Log.i("Predict", "SISISI");
-                    while ((line = reader.readLine()) != null) {
-                        stringBuffer.append(line);
-                        Log.i("넘어온다고?" ,line);
-                    }
-                    line = stringBuffer.toString();
-                }else{
-                    Log.i("Predict", "안들어갓슈");
-                }
+//                if (conn.getResponseCode() == 200) {
+//                    InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");
+//                    BufferedReader reader = new BufferedReader(tmp);
+//                    StringBuffer stringBuffer = new StringBuffer();
+//
+//                  //  Log.i("Predict", "SISISI");
+//                    while ((line = reader.readLine()) != null) {
+//                        stringBuffer.append(line);
+//                        Log.i("넘어온다고?" ,line);
+//                    }
+//                    line = stringBuffer.toString();
+//                }else{
+//                    Log.i("Predict", "안들어갓슈");
+//                }
                 mFileInputStream.close();
                 dos.close();
                 Log.i("Predict", "HTTPTPTPTP");
