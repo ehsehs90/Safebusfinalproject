@@ -84,6 +84,15 @@
             android:background="@color/투명Button"
             android:text="로그인6" />
         <Button
+            android:id="@+id/tcpconn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|right"
+            android:layout_marginRight="350dp"
+            android:layout_marginTop="300dp"
+            android:background="@color/투명Button"
+            android:text="tcptest" />
+        <Button
             android:id="@+id/mapBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

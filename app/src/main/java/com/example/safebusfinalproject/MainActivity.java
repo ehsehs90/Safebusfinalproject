@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         Button login5Btn = (Button)findViewById(R.id.login5Btn);
         Button login6Btn = (Button)findViewById(R.id.login6Btn);
         Button kungkang = (Button)findViewById(R.id.kungkang);
+        Button tcpconn = (Button)findViewById(R.id.tcpconn);
 
         //kungkang
 
@@ -184,6 +185,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        tcpconn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 버튼을 눌렀을 때 서비스를 생성하고 실행.
+
+                Intent i = new Intent(MainActivity.this, NewClientActivity.class);
+                startActivity(i);
+            }
+        });
 
     }
 
