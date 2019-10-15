@@ -31,5 +31,59 @@
         android:layout_height="200px"
         android:id="@+id/res_textview">
     </TextView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/seatBtn"
+            android:background="@color/Button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="#fff"
+            android:layout_centerInParent="true"
+            android:padding="2px"
+            android:layout_marginEnd="8dp"
+            android:radius="4dp"
+            android:text="죄석" />
+
+        <Button
+            android:id="@+id/messageBtn"
+            android:background="@color/Button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
+            android:textColor="#fff"
+            android:layout_centerInParent="true"
+            android:padding="2px"
+            android:radius="4dp"
+            android:text="메세지" />
+
+        <Button
+            android:id="@+id/businfoBtn"
+            android:background="@color/Button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="#fff"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="8dp"
+            android:padding="2px"
+            android:radius="4dp"
+            android:text="차량정보" />
+
+        <Button
+            android:id="@+id/settingBtn"
+            android:background="@color/Button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="#fff"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="8dp"
+            android:padding="2px"
+            android:radius="4dp"
+            android:text="환경설정" />
+    </LinearLayout>
 
 </LinearLayout>

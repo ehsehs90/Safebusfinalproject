@@ -385,11 +385,25 @@ public class MapViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_view);
 
+
         Intent intent = getIntent(); /*데이터 수신*/
         Bundle bundle = intent.getExtras();
         final String carNum = bundle.getString("carNumber");
         String station = bundle.getString("station");
         String state = "";
+
+
+        Button businfoBtn = (Button)findViewById(R.id.businfoBtn);      //버스정보 activity
+        businfoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Intent goBusInfo = new Intent(this,NewClientActivity.class);
+                Intent goBusInfo = new Intent();
+                goBusInfo.putExtra("carNum",carNum);
+                startActivity(goBusInfo);
+            }
+        });
+
 
         Button nowLoc = (Button)findViewById(R.id.nowloc);
         // 마커 아이콘
