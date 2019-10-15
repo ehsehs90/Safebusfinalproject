@@ -63,16 +63,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // (Android의 전형적인 event처리방식)
-        settingBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // 버튼을 눌렀을 때 서비스를 생성하고 실행.
-
-                Intent i = new Intent(MainActivity.this, ActSettings.class);
-                startActivity(i);
-
-            }
-        });
+//        settingBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                // 버튼을 눌렀을 때 서비스를 생성하고 실행.
+//
+//                Intent i = new Intent(MainActivity.this, ActSettings.class);
+//                startActivity(i);
+//
+//            }
+//        });
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        seatBtn.setOnClickListener(new View.OnClickListener() {
+/*        seatBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // 버튼을 눌렀을 때 서비스를 생성하고 실행.
@@ -94,9 +94,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
 
             }
-        });
+        });*/
 
-        settingloginBtn.setOnClickListener(new View.OnClickListener() {
+/*        settingloginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // 버튼을 눌렀을 때 서비스를 생성하고 실행.
@@ -105,9 +105,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
 
             }
-        });
+        });*/
 
-        messageBtn.setOnClickListener(new View.OnClickListener() {
+/*        messageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // 버튼을 눌렀을 때 서비스를 생성하고 실행.
@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
 
             }
-        });
+        });*/
 
         login3Btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        businfoBtn.setOnClickListener(new View.OnClickListener() {
+/*        businfoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // 버튼을 눌렀을 때 서비스를 생성하고 실행.
@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
 
             }
-        });
+        });*/
         //버튼 ->  리스너
 
 //        login4Btn.setOnClickListener(new View.OnClickListener() {
