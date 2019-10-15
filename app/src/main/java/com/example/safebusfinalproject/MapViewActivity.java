@@ -2,6 +2,7 @@ package com.example.safebusfinalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ComponentName;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -66,6 +67,8 @@ public class MapViewActivity extends AppCompatActivity {
     TMapTapi tMapTapi;
     List<String> arriveTimes = new ArrayList<String>();
 
+
+
     String seat="absent";
     class LoginDB extends AsyncTask<String, Void, String> {
         String sendMsg, receiveMsg;
@@ -78,7 +81,7 @@ public class MapViewActivity extends AppCompatActivity {
 
                 // 접속할 서버 주소 (이클립스에서 android.jsp 실행시 웹브라우저 주소)
                 //URL url = new URL("http://70.12.115.78:80/bustest2/login.do");
-                URL url = new URL("http://70.12.115.71:9090/safebus/absent.do");
+                URL url = new URL("http://70.12.115.78:80/safebus/absent.do");
 
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -134,7 +137,7 @@ public class MapViewActivity extends AppCompatActivity {
 
                 // 접속할 서버 주소 (이클립스에서 android.jsp 실행시 웹브라우저 주소)
                 //URL url = new URL("http://70.12.115.78:80/bustest2/login.do");
-                URL url = new URL("http://70.12.115.71:9090/safebus/present.do");
+                URL url = new URL("http://70.12.115.78:80/safebus/present.do");
 
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -178,6 +181,48 @@ public class MapViewActivity extends AppCompatActivity {
             //return null;
         }
     }
+
+    class Logout extends AsyncTask<Void, Void, String> {
+        String sendMsg, receiveMsg;
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            try {
+                String str;
+
+                //URL url = new URL("http://70.12.115.78:80/bustest2/logout.do");
+                URL url = new URL("http://70.12.115.78:80/safebus/logout.do");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                conn.setRequestMethod("POST");
+
+                if (conn.getResponseCode() == conn.HTTP_OK) {
+                    InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");
+                    BufferedReader reader = new BufferedReader(tmp);
+                    StringBuffer buffer = new StringBuffer();
+
+                    // jsp에서 보낸 값을 받는 부분
+                    while ((str = reader.readLine()) != null) {
+                        buffer.append(str);
+                    }
+                    receiveMsg = buffer.toString();
+                    Log.i("DBtest", receiveMsg);
+
+                } else {
+                    // 통신 실패
+                    Log.i("error", receiveMsg);
+                }
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return receiveMsg;
+        }
+    }
+
+
 
     class DrawPolyLine implements Runnable {
 
@@ -515,39 +560,38 @@ public class MapViewActivity extends AppCompatActivity {
         String state = "";
 
 
-
-        Button businfoBtn = (Button)findViewById(R.id.businfoBtn);      //버스정보 activity
+        Button businfoBtn = (Button) findViewById(R.id.businfoBtn);      //버스정보 activity
         businfoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent goBusInfo = new Intent(MapViewActivity.this,NewClientActivity.class);
+                Intent goBusInfo = new Intent(MapViewActivity.this, NewClientActivity.class);
                 //Intent goBusInfo = new Intent();
-                goBusInfo.putExtra("carNum",carNum);
+                goBusInfo.putExtra("carNum", carNum);
                 startActivity(goBusInfo);
             }
         });
 
 
-        Button nowLoc = (Button)findViewById(R.id.nowloc);
+        Button nowLoc = (Button) findViewById(R.id.nowloc);
         // 마커 아이콘
         bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.marker2);
         startbit = BitmapFactory.decodeResource(getResources(), R.drawable.start);
         endbit = BitmapFactory.decodeResource(getResources(), R.drawable.end);
         nowbit = BitmapFactory.decodeResource(getResources(), R.drawable.bus);
 
-        Tmap = (LinearLayout)findViewById(R.id.tmap_view);
+        Tmap = (LinearLayout) findViewById(R.id.tmap_view);
         tMapView = new TMapView(this);
 
         tMapView.setSKTMapApiKey("b7dc6f07-a787-4f42-9d8d-c42b9eee47a1");
 
         //tMapView.setSKTMapApiKey("87e1a7c5-b8fc-4078-948b-c3c9f00927e1");
-        tMapView.setCenterPoint( 127.036174,37.500138); //강남파이낸스 센터
+        tMapView.setCenterPoint(127.036174, 37.500138); //강남파이낸스 센터
 
         // 강남파이낸스 근처에 있으면 유치원에서 출발, 아니면 도착점
-        TMapPoint sPoint = new TMapPoint(0,0);
+        TMapPoint sPoint = new TMapPoint(0, 0);
         LocationURLConnection locationURLConnection =
                 new LocationURLConnection();
-        Log.d("sisisisi","hi");
+        Log.d("sisisisi", "hi");
         try {
             sPoint = locationURLConnection.getNowInfo(carNum);
         } catch (JSONException e) {
@@ -558,12 +602,12 @@ public class MapViewActivity extends AppCompatActivity {
 
         //Double sPointX = 127.036174;
         //Double sPointY = 37.500138;
-        if(sPointX >= 127.035680 && sPointX <= 127.037660 && sPointY >= 37.499000 && sPointY <= 37.500620){ //유치원에서 출발
+        if (sPointX >= 127.035680 && sPointX <= 127.037660 && sPointY >= 37.499000 && sPointY <= 37.500620) { //유치원에서 출발
             state = "gohome";
-            Log.d("sisisisi",state);
-        }else{
+            Log.d("sisisisi", state);
+        } else {
             state = "gokinder";
-            Log.d("sisisisi",state);
+            Log.d("sisisisi", state);
         }
 
         //1. 출발시간(db에서 가져오던가 can에서 바로 가져오던가)
@@ -573,7 +617,7 @@ public class MapViewActivity extends AppCompatActivity {
 
         //Log.d("sisisisisi", starttime);
 
-        TMapNav tmapnav = new TMapNav(station,starttime,state);
+        TMapNav tmapnav = new TMapNav(station, starttime, state);
         Thread tmapThread = new Thread(tmapnav);
         tmapThread.start();
 
@@ -581,11 +625,11 @@ public class MapViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // 버튼을 누르면 현재 위치 마커로 표시
-                TMapPoint nowPoint = new TMapPoint(0,0);
+                TMapPoint nowPoint = new TMapPoint(0, 0);
                 LocationURLConnection locationURLConnection =
                         new LocationURLConnection();
                 //carNum = "123가456";
-                Log.d("sisisisi","hi");
+                Log.d("sisisisi", "hi");
                 try {
                     nowPoint = locationURLConnection.getNowInfo(carNum);
                 } catch (JSONException e) {
@@ -599,7 +643,7 @@ public class MapViewActivity extends AppCompatActivity {
                 nowItem = new TMapMarkerItem();
                 nowItem.setIcon(nowbit); // 마커 아이콘 지정
                 nowItem.setPosition(0.5f, 0.5f); // 마커의 중심점을 중앙, 하단으로 설정
-                nowItem.setTMapPoint( nowPoint ); // 마커의 좌표 지정
+                nowItem.setTMapPoint(nowPoint); // 마커의 좌표 지정
                 nowItem.setName("nPoint"); // 마커의 타이틀 지정
                 tMapView.addMarkerItem("nowItem", nowItem); // 지도에 마커 추가
             }
@@ -607,25 +651,69 @@ public class MapViewActivity extends AppCompatActivity {
 
         Tmap.addView(tMapView);
 
-        Button absentBtn = (Button)findViewById(R.id.absentBtn);
+
+        final Button LogoutBtn = findViewById(R.id.LogoutBtn);
+        LogoutBtn.setOnClickListener(new View.OnClickListener() {
+
+            String result;
+
+            @Override
+            public void onClick(View v) {
+                try {
+
+
+                    MapViewActivity.Logout logout = new MapViewActivity.Logout();
+
+                    result = logout.execute().get();
+
+                    if (result.equals("logout")){
+                        Log.i("DBtest","토스트");
+                        Toast.makeText(MapViewActivity.this,
+                                "로그아웃 성공!",
+                                Toast.LENGTH_SHORT).show();
+                    }else{
+                        Log.i("DBtest","토스트실패");
+                        Toast.makeText(MapViewActivity.this,
+                                "로그아웃 실패!",
+                                Toast.LENGTH_SHORT).show();
+                    }
+
+                    Intent i = new Intent();
+                    ComponentName cname = new ComponentName("com.example.safebusfinalproject",
+                            "com.example.safebusfinalproject.LoginActivity");
+                    i.setComponent(cname);
+
+                    startActivity(i);
+
+
+                }catch (Exception e){
+                    Log.i("DBtest", "Logout Error!");
+                }
+
+            }
+        });
+
+
+
+
+        Button absentBtn = (Button) findViewById(R.id.absentBtn);
         absentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
 
-                if (seat.equals("absent")){
-                    String result="";
+                if (seat.equals("absent")) {
+                    String result = "";
                     String resultAbsent;
                     String station = "1";
                     String pw = "1";
-
 
 
                     MapViewActivity.LoginDB logindb = new MapViewActivity.LoginDB();
 
                     try {
 
-                        result=logindb.execute(station, pw).get();
+                        result = logindb.execute(station, pw).get();
 
                     } catch (ExecutionException e) {
                         e.printStackTrace();
@@ -635,33 +723,32 @@ public class MapViewActivity extends AppCompatActivity {
                     resultAbsent = result;
 
 
-                    if (resultAbsent.equals("success")){
-                        Log.i("resultAbsent","결석 성공");
+                    if (resultAbsent.equals("success")) {
+                        Log.i("resultAbsent", "결석 성공");
                         Toast.makeText(MapViewActivity.this,
                                 "결석 성공!",
                                 Toast.LENGTH_SHORT).show();
-                    }else{
-                        Log.i("resultAbsent","결석 실패");
+                    } else {
+                        Log.i("resultAbsent", "결석 실패");
                         Toast.makeText(MapViewActivity.this,
                                 "결석 실패!",
                                 Toast.LENGTH_SHORT).show();
                     }
-                    seat="present";
+                    seat = "present";
                     Log.i("seat", seat);
 
-                } else if (seat.equals("present")){
-                    String result="";
+                } else if (seat.equals("present")) {
+                    String result = "";
                     String resultAbsent;
                     String station = "1";
                     String pw = "1";
-
 
 
                     MapViewActivity.LoginDB2 logindb2 = new MapViewActivity.LoginDB2();
 
                     try {
 
-                        result=logindb2.execute(station, pw).get();
+                        result = logindb2.execute(station, pw).get();
 
                     } catch (ExecutionException e) {
                         e.printStackTrace();
@@ -671,27 +758,34 @@ public class MapViewActivity extends AppCompatActivity {
                     resultAbsent = result;
 
 
-                    if (resultAbsent.equals("success")){
-                        Log.i("resultAbsent","결석취소 성공");
+                    if (resultAbsent.equals("success")) {
+                        Log.i("resultAbsent", "결석취소 성공");
                         Toast.makeText(MapViewActivity.this,
                                 "결석취소 성공!",
                                 Toast.LENGTH_SHORT).show();
-                    }else{
-                        Log.i("resultAbsent","결석취소 실패");
+                    } else {
+                        Log.i("resultAbsent", "결석취소 실패");
                         Toast.makeText(MapViewActivity.this,
                                 "결석취소 실패!",
                                 Toast.LENGTH_SHORT).show();
                     }
-                    seat="absent";
+                    seat = "absent";
                     Log.i("seat", seat);
                 }
 
-
-
-
-
-
             }
         });
+
+//        Button logoutBtn =  findViewById(R.id.logoutBtn);
+//        logoutBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(MapViewActivity.this, LogoutActivity.class);
+//                startActivity(i);
+//            }
+//        });
+
+
+
     }
 }
