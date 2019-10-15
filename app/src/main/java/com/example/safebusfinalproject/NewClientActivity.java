@@ -141,6 +141,8 @@ public class NewClientActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... str) {
 
+            String a = null;
+
             try {
                 // *********************************************************
                 // 소켓을 생성하고, 서버에 접속한다.
@@ -155,13 +157,17 @@ public class NewClientActivity extends AppCompatActivity {
                     PrintWriter out = new PrintWriter(new BufferedWriter
                             (new OutputStreamWriter(socket.getOutputStream())), true);
                     out.println(msgToServer);
+                    a = "여기1";
                     Log.d("MY_TAG", "C: Send Message To Server -> " + msgToServer);
 
                     // *********************************************************
                     // 서버로부터 데이터를 받는다.
                     // *********************************************************
+                    a = "여기2";
+                    Log.i("내용?",socket.getInputStream().toString());
                     BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                     msgFromServer = in.readLine();
+                    a = "여기3";
                     Log.d("MY_TAG", "C: Receive Message From Server -> " + msgFromServer);
                 } catch (Exception e) {
                     Log.e("MY_TAG", "C: Error1", e);
@@ -176,7 +182,7 @@ public class NewClientActivity extends AppCompatActivity {
                 Log.e("MY_TAG", "C: Error2", e);
             }
 
-                return "끝이야끝";
+            return a;
         }
     }
 }
