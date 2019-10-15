@@ -8,12 +8,14 @@
     tools:context= "com.example.safebusfinalproject.MapViewActivity">
 
     <!--    tools:context="com.example.safebusfinalproject.MainActivity"-->
-    <TextView
-        android:id="@+id/notice"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/absentBtn"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="공지사항">
-    </TextView>
+        android:layout_gravity="right"
+        android:layout_marginRight="40dp"
+        android:background="@color/투명Button"
+        android:text="결석" />
     <LinearLayout
         android:id="@+id/tmap_view"
         android:layout_width="match_parent"

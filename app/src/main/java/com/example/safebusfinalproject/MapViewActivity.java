@@ -15,6 +15,7 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.safebusfinalproject.mapVO.ViaPointVO;
 import com.skt.Tmap.TMapCircle;
@@ -29,7 +30,13 @@ import org.json.JSONException;
 import org.w3c.dom.Text;
 import org.xml.sax.SAXException;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -39,6 +46,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -51,11 +59,125 @@ public class MapViewActivity extends AppCompatActivity {
     Bitmap nowbit;
     TMapMarkerItem nowItem;
 
+
     TextView res_textview;
     LinearLayout Tmap;
     TMapView tMapView;
     TMapTapi tMapTapi;
     List<String> arriveTimes = new ArrayList<String>();
+
+    String seat="absent";
+    class LoginDB extends AsyncTask<String, Void, String> {
+        String sendMsg, receiveMsg;
+        String result;
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                String str;
+                String description;
+
+                // 접속할 서버 주소 (이클립스에서 android.jsp 실행시 웹브라우저 주소)
+                //URL url = new URL("http://70.12.115.78:80/bustest2/login.do");
+                URL url = new URL("http://70.12.115.71:9090/safebus/absent.do");
+
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                conn.setRequestMethod("POST");
+                OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
+
+                description = "hello";
+                // 전송할 데이터. GET 방식으로 작성
+                sendMsg = "station=" + strings[0] + "&pw=" + strings[1];
+                Log.i("absent",sendMsg);
+
+                osw.write(sendMsg);
+                osw.flush();
+
+                //jsp와 통신 성공 시 수행
+                if (conn.getResponseCode() == conn.HTTP_OK) {
+                    InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");
+                    BufferedReader reader = new BufferedReader(tmp);
+                    StringBuffer buffer = new StringBuffer();
+
+                    // jsp에서 보낸 값을 받는 부분
+                    while ((str = reader.readLine()) != null) {
+                        buffer.append(str);
+                    }
+                    receiveMsg = buffer.toString();
+                    Log.i("absent",receiveMsg);
+
+
+                } else {
+                    // 통신 실패
+                    Log.i("error",receiveMsg);
+                }
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            //jsp로부터 받은 리턴 값
+            return receiveMsg;
+            //return null;
+        }
+    }
+
+    class LoginDB2 extends AsyncTask<String, Void, String> {
+        String sendMsg, receiveMsg;
+        String result;
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                String str;
+                String description;
+
+                // 접속할 서버 주소 (이클립스에서 android.jsp 실행시 웹브라우저 주소)
+                //URL url = new URL("http://70.12.115.78:80/bustest2/login.do");
+                URL url = new URL("http://70.12.115.71:9090/safebus/present.do");
+
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                conn.setRequestMethod("POST");
+                OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
+
+                description = "hello";
+                // 전송할 데이터. GET 방식으로 작성
+                sendMsg = "station=" + strings[0] + "&pw=" + strings[1];
+                Log.i("present",sendMsg);
+
+                osw.write(sendMsg);
+                osw.flush();
+
+                //jsp와 통신 성공 시 수행
+                if (conn.getResponseCode() == conn.HTTP_OK) {
+                    InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");
+                    BufferedReader reader = new BufferedReader(tmp);
+                    StringBuffer buffer = new StringBuffer();
+
+                    // jsp에서 보낸 값을 받는 부분
+                    while ((str = reader.readLine()) != null) {
+                        buffer.append(str);
+                    }
+                    receiveMsg = buffer.toString();
+                    Log.i("present",receiveMsg);
+
+
+                } else {
+                    // 통신 실패
+                    Log.i("error",receiveMsg);
+                }
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            //jsp로부터 받은 리턴 값
+            return receiveMsg;
+            //return null;
+        }
+    }
 
     class DrawPolyLine implements Runnable {
 
@@ -393,6 +515,7 @@ public class MapViewActivity extends AppCompatActivity {
         String state = "";
 
 
+
         Button businfoBtn = (Button)findViewById(R.id.businfoBtn);      //버스정보 activity
         businfoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -483,5 +606,92 @@ public class MapViewActivity extends AppCompatActivity {
         });
 
         Tmap.addView(tMapView);
+
+        Button absentBtn = (Button)findViewById(R.id.absentBtn);
+        absentBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                if (seat.equals("absent")){
+                    String result="";
+                    String resultAbsent;
+                    String station = "1";
+                    String pw = "1";
+
+
+
+                    MapViewActivity.LoginDB logindb = new MapViewActivity.LoginDB();
+
+                    try {
+
+                        result=logindb.execute(station, pw).get();
+
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    resultAbsent = result;
+
+
+                    if (resultAbsent.equals("success")){
+                        Log.i("resultAbsent","결석 성공");
+                        Toast.makeText(MapViewActivity.this,
+                                "결석 성공!",
+                                Toast.LENGTH_SHORT).show();
+                    }else{
+                        Log.i("resultAbsent","결석 실패");
+                        Toast.makeText(MapViewActivity.this,
+                                "결석 실패!",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                    seat="present";
+                    Log.i("seat", seat);
+
+                } else if (seat.equals("present")){
+                    String result="";
+                    String resultAbsent;
+                    String station = "1";
+                    String pw = "1";
+
+
+
+                    MapViewActivity.LoginDB2 logindb2 = new MapViewActivity.LoginDB2();
+
+                    try {
+
+                        result=logindb2.execute(station, pw).get();
+
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    resultAbsent = result;
+
+
+                    if (resultAbsent.equals("success")){
+                        Log.i("resultAbsent","결석취소 성공");
+                        Toast.makeText(MapViewActivity.this,
+                                "결석취소 성공!",
+                                Toast.LENGTH_SHORT).show();
+                    }else{
+                        Log.i("resultAbsent","결석취소 실패");
+                        Toast.makeText(MapViewActivity.this,
+                                "결석취소 실패!",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                    seat="absent";
+                    Log.i("seat", seat);
+                }
+
+
+
+
+
+
+            }
+        });
     }
 }
