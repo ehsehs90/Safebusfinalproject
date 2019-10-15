@@ -1,63 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity" >
+    android:orientation="vertical"
+    android:background="#FAFAFA"
+    tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/ID_Text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:text="ID를 입력하세요" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFC107"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/input_ID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ID_Text"
-        android:layout_centerHorizontal="true"
-        android:ems="10" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="150dp"
+            android:src="@drawable/logo" />
 
-    <TextView
-        android:id="@+id/PW_Text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/input_ID"
-        android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true"
-        android:text="비밀번호를 입력하세요" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="SAFE BUS"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textStyle="bold"/>
 
-    <EditText
-        android:id="@+id/input_PW"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/PW_Text"
-        android:layout_centerHorizontal="true"
-        android:ems="10" >
+        <EditText
+            android:id="@+id/input_ID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25sp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/but_background"
+            android:hint="Username"
+            android:inputType="text"
+            android:padding="10dp"
+            />
 
-        <requestFocus />
-    </EditText>
+        <EditText
+            android:id="@+id/input_PW"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25sp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/but_background"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="10dp"
 
-    <CheckBox
-        android:id="@+id/Auto_LogIn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/input_PW"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
-        android:text="자동 로그인" />
+            />
 
-    <Button
-        android:id="@+id/loginrealBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/Auto_LogIn"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="110dp"
-        android:background="@color/투명Button"
-        android:text="로그인" />
+        <CheckBox
+            android:id="@+id/Auto_LogIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/input_PW"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="자동 로그인" />
+
+        <Button
+            android:id="@+id/loginBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="25sp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/sign_in_button_background"
+            android:text="로그인"
+            android:textColor="@android:color/white" />
+
+
+        <TextView
+            android:id="@+id/registerBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="회원가입"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textColor="#313131" />
+
+    </LinearLayout>
 
 </RelativeLayout>

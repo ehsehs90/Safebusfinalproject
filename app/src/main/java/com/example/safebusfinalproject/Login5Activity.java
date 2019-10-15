@@ -203,7 +203,10 @@ public class Login5Activity extends AppCompatActivity {
 
                         voparents.setBabyName(babyname2);
                         voparents.setAddress(address2);
+
                         voparents.setBabyGender(chk2);
+
+
 
                         RParentsActivity task = new RParentsActivity();
                         resultstr = task.execute(voparents).get();

@@ -17,7 +17,13 @@
         <activity android:name=".trash.RegisterActivity" />
         <activity android:name=".trash.Login2Activity" />
         <activity android:name=".SeatActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".LoginActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".LogoutActivity" />
         <activity android:name=".BusinfoActivity" />
         <activity android:name=".trash.Login4Activity" />
@@ -34,11 +40,7 @@
 
         <activity android:name=".trash.Main2Activity" />
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <meta-data
             android:name="com.google.android.actions"

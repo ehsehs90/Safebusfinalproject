@@ -22,7 +22,8 @@ public class RDriverActivity extends AsyncTask<RDriverVO, Void, String> {
             String str;
 
             // 접속할 서버 주소 (이클립스에서 android.jsp 실행시 웹브라우저 주소)
-            URL url = new URL("http://70.12.115.53:8080/sendmsg/Rdriverlogin.jsp");
+            //URL url = new URL("http://70.12.115.53:8080/sendmsg/Rdriverlogin.jsp");
+            URL url = new URL("http://70.12.115.78:80/safebus/driver/add.do");
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");

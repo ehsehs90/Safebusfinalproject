@@ -16,6 +16,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -87,7 +88,8 @@ public class LoginActivity extends AppCompatActivity {
 
         final EditText input_ID, input_PW;
         final CheckBox Auto_LogIn;
-        final Button loginrealBtn;
+        final Button loginBtn;
+        final TextView registerBtn;
 
         SharedPreferences setting;
         final SharedPreferences.Editor editor;
@@ -95,7 +97,7 @@ public class LoginActivity extends AppCompatActivity {
         input_ID = (EditText) findViewById(R.id.input_ID);
         input_PW = (EditText) findViewById(R.id.input_PW);
         Auto_LogIn = (CheckBox) findViewById(R.id.Auto_LogIn);
-        loginrealBtn = (Button) findViewById(R.id.loginrealBtn);
+        loginBtn = (Button) findViewById(R.id.loginBtn);
 
         setting = getSharedPreferences("setting", 0);
         editor= setting.edit();
@@ -106,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
             Auto_LogIn.setChecked(true);
         }
 
-        loginrealBtn.setOnClickListener(new View.OnClickListener() {
+        loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -115,7 +117,6 @@ public class LoginActivity extends AppCompatActivity {
                     String resultLogin;
                     String resultStation;
                     String resultCarnumber;
-
 
                     String id = input_ID.getText().toString();
                     String pw = input_PW.getText().toString();
@@ -200,6 +201,14 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        registerBtn = findViewById(R.id.registerBtn);
+        registerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(LoginActivity.this, Login7Activity.class);
+                startActivity(i);
+            }
+        });
 
     }
 
