@@ -176,7 +176,7 @@ public class NewClientActivity extends AppCompatActivity {
                 Log.e("MY_TAG", "C: Error2", e);
             }
 
-                return null;
+                return "끝이야끝";
         }
     }
 }

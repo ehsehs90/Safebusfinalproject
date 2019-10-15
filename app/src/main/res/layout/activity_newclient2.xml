@@ -81,7 +81,7 @@
                 android:layout_height="130px"
                 android:layout_marginTop="320dp"
                 android:layout_marginLeft="130dp"
-                android:text="조회하기"/>
+                android:text="조회하기(서버접속)"/>
 
         </FrameLayout>
 

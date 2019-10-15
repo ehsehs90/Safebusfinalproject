@@ -27,6 +27,7 @@
         <activity android:name=".trash.PredictImageActivity" />
         <activity android:name=".BusinfoActivity2" />
         <activity android:name=".NewClientActivity"/>
+        <activity android:name=".NewClient2Activity"/>
         <activity
             android:name=".ActSettings"
             android:label="@string/app_name" />
@@ -45,7 +46,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.safebusfinalproject.trash.fileprovider"
+            android:authorities="com.example.safebusfinalproject.trash.PredictImageActivity"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
