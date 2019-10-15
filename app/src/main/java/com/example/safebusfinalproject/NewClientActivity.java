@@ -13,8 +13,8 @@
 //
 //public class NewClientActivity extends AsyncTask{
 //
-//    protected static	String SERV_IP		=	"70.12.115.53"; //server ip
-//    protected static	int		  PORT		=	8090;
+//    protected static   String SERV_IP      =   "70.12.115.53"; //server ip
+//    protected static   int        PORT      =   8090;
 //    String tmp = null;
 //
 //    @Override
@@ -26,13 +26,13 @@
 //            InetAddress serverAddr = InetAddress.getByName(SERV_IP);
 //            Socket sock = new Socket(serverAddr,PORT);
 //
-//            DataInputStream		input		=	new DataInputStream(sock.getInputStream());
-//            DataOutputStream	output	=	new DataOutputStream(sock.getOutputStream());
+//            DataInputStream      input      =   new DataInputStream(sock.getInputStream());
+//            DataOutputStream   output   =   new DataOutputStream(sock.getOutputStream());
 //            OutputStreamWriter osw = new OutputStreamWriter(sock.getOutputStream());
 //
 //
 //            try{
-//                //	데이터 송신 부분!
+//                //   데이터 송신 부분!
 //                //Log.i("output",output.toString());
 //                //output.write();
 //                //WriteSocket(output);
@@ -49,7 +49,7 @@
 //        } catch (UnknownHostException e) {
 //            // TODO Auto-generated catch block
 //            e.printStackTrace();
-//        } catch(IOException	e){
+//        } catch(IOException   e){
 //            e.printStackTrace();
 //        }
 //
@@ -57,11 +57,11 @@
 //    }
 //
 ////    public void WriteSocket(DataOutputStream data) throws IOException{
-////        //	data send
+////        //   data send
 ////        data.write('a');
 ////    }
-//    public void ReadSock(DataInputStream	data) throws IOException{
-//        //	data recieve
+//    public void ReadSock(DataInputStream   data) throws IOException{
+//        //   data recieve
 //        byte[] datafile = null;
 //
 //        data.read(datafile);
@@ -70,6 +70,7 @@
 //}
 package com.example.safebusfinalproject;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -96,13 +97,20 @@ public class NewClientActivity extends AppCompatActivity {
     private String msgFromServer;
     private String result;
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_newclient);
+        setContentView(R.layout.activity_businfo);
 
         final EditText et = (EditText) findViewById(R.id.EditText01);
-        final Button btn = (Button) findViewById(R.id.Button01);
+        final Button btn = (Button) findViewById(R.id.infoBtn);
+
+        Intent intent = getIntent(); /*데이터 수신*/
+        String carNum = intent.getStringExtra("carNum");
+        Log.d("cccccc",carNum);
+
+        et.setText(carNum);
 
         btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
