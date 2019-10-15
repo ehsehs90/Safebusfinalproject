@@ -2,9 +2,12 @@ package com.example.safebusfinalproject;
 
 import android.content.ComponentName;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +15,15 @@ import com.example.safebusfinalproject.trash.Login2Activity;
 import com.example.safebusfinalproject.trash.Login3Activity;
 import com.example.safebusfinalproject.trash.Login4Activity;
 import com.example.safebusfinalproject.LoginActivity;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,10 +46,12 @@ public class MainActivity extends AppCompatActivity {
 //        Button goBtn = (Button)findViewById(R.id.goBtn);
         Button login5Btn = (Button)findViewById(R.id.login5Btn);
         Button login6Btn = (Button)findViewById(R.id.login6Btn);
-        Button kungkang = (Button)findViewById(R.id.kungkang);
-        Button tcpconn = (Button)findViewById(R.id.tcpconn);
 
-        //kungkang
+
+
+
+
+
 
 
 //        goBtn.setOnClickListener(new View.OnClickListener() {
@@ -51,28 +65,18 @@ public class MainActivity extends AppCompatActivity {
 //
 //            }
 //        });
-        kungkang.setOnClickListener(new View.OnClickListener() {
+
+        // (Android의 전형적인 event처리방식)
+        settingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // 버튼을 눌렀을 때 서비스를 생성하고 실행.
 
-                Intent i = new Intent(MainActivity.this, BusinfoActivity2.class);
+                Intent i = new Intent(MainActivity.this, ActSettings.class);
                 startActivity(i);
 
             }
         });
-
-        // (Android의 전형적인 event처리방식)
-//        settingBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // 버튼을 눌렀을 때 서비스를 생성하고 실행.
-//
-//                Intent i = new Intent(MainActivity.this, ActSettings.class);
-//                startActivity(i);
-//
-//            }
-//        });
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-/*        seatBtn.setOnClickListener(new View.OnClickListener() {
+        seatBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // 버튼을 눌렀을 때 서비스를 생성하고 실행.
@@ -94,9 +98,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
 
             }
-        });*/
+        });
 
-/*        settingloginBtn.setOnClickListener(new View.OnClickListener() {
+        settingloginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // 버튼을 눌렀을 때 서비스를 생성하고 실행.
@@ -105,9 +109,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
 
             }
-        });*/
+        });
 
-/*        messageBtn.setOnClickListener(new View.OnClickListener() {
+        messageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // 버튼을 눌렀을 때 서비스를 생성하고 실행.
@@ -116,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
 
             }
-        });*/
+        });
 
         login3Btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-/*        businfoBtn.setOnClickListener(new View.OnClickListener() {
+        businfoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // 버튼을 눌렀을 때 서비스를 생성하고 실행.
@@ -149,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
 
             }
-        });*/
+        });
         //버튼 ->  리스너
 
 //        login4Btn.setOnClickListener(new View.OnClickListener() {
@@ -179,21 +183,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // 버튼을 눌렀을 때 서비스를 생성하고 실행.
 
-                Intent i = new Intent(MainActivity.this, Login6Activity.class);
+                Intent i = new Intent(MainActivity.this, Login7Activity.class);
                 startActivity(i);
 
             }
         });
 
-        tcpconn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // 버튼을 눌렀을 때 서비스를 생성하고 실행.
 
-                Intent i = new Intent(MainActivity.this, NewClientActivity.class);
-                startActivity(i);
-            }
-        });
+
+
 
     }
 
