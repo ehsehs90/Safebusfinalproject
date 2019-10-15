@@ -36,7 +36,7 @@ public class LocationURLConnection {
         getNowLocInfo task = new getNowLocInfo();
         try {
             jsonString = task.execute(car_num).get();
-            Log.d("sisisisi",jsonString);
+//            Log.d("sisisisi",jsonString);
             JSONObject result = new JSONObject(jsonString);
 
             //vo.setViaX(result.getString("longitude"));
@@ -60,6 +60,16 @@ public class LocationURLConnection {
 class getNowLocInfo extends AsyncTask<String, Void, String> {
     String sendMsg;
     String receiveMsg;
+
+    @Override
+    protected void onPreExecute() {
+        Log.i("AsyncTask", "onPreExecute");
+    }
+
+    @Override
+    protected void onPostExecute(String result) {
+        super.onPreExecute();
+    }
 
     @Override
     protected String doInBackground(String... strings) {
@@ -94,7 +104,7 @@ class getNowLocInfo extends AsyncTask<String, Void, String> {
                 receiveMsg = buffer.toString();
             } else {
                 // 통신 실패
-                Log.i("error", receiveMsg);
+                //Log.i("error", receiveMsg);
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
