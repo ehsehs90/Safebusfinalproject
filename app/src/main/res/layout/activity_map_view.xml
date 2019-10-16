@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
 
             android:background="@color/투명Button"
-            android:text="결석" />
+            android:text="출석" />
 
         <View
             android:layout_width="0dp"

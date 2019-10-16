@@ -695,19 +695,21 @@ public class MapViewActivity extends AppCompatActivity {
 
 
 
+        // station 받아온다
+        final String st = station;
 
-        Button absentBtn = (Button) findViewById(R.id.absentBtn);
+        final Button absentBtn = (Button) findViewById(R.id.absentBtn);
         absentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
 
+
                 if (seat.equals("absent")) {
                     String result = "";
                     String resultAbsent;
-                    String station = "1";
+                    String station = st;  // st = Login 할때 받은 station 정보
                     String pw = "1";
-
 
                     MapViewActivity.LoginDB logindb = new MapViewActivity.LoginDB();
 
@@ -728,6 +730,9 @@ public class MapViewActivity extends AppCompatActivity {
                         Toast.makeText(MapViewActivity.this,
                                 "결석 성공!",
                                 Toast.LENGTH_SHORT).show();
+
+                        absentBtn.setText("결석");
+
                     } else {
                         Log.i("resultAbsent", "결석 실패");
                         Toast.makeText(MapViewActivity.this,
@@ -740,7 +745,7 @@ public class MapViewActivity extends AppCompatActivity {
                 } else if (seat.equals("present")) {
                     String result = "";
                     String resultAbsent;
-                    String station = "1";
+                    String station = st; // st = Login 할때 받은 station 정보
                     String pw = "1";
 
 
@@ -763,6 +768,9 @@ public class MapViewActivity extends AppCompatActivity {
                         Toast.makeText(MapViewActivity.this,
                                 "결석취소 성공!",
                                 Toast.LENGTH_SHORT).show();
+
+                        absentBtn.setText("출석");
+
                     } else {
                         Log.i("resultAbsent", "결석취소 실패");
                         Toast.makeText(MapViewActivity.this,
@@ -775,17 +783,6 @@ public class MapViewActivity extends AppCompatActivity {
 
             }
         });
-
-//        Button logoutBtn =  findViewById(R.id.logoutBtn);
-//        logoutBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(MapViewActivity.this, LogoutActivity.class);
-//                startActivity(i);
-//            }
-//        });
-
-
 
     }
 }

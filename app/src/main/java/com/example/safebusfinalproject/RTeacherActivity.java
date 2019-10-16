@@ -22,7 +22,8 @@ public class RTeacherActivity extends AsyncTask<RTeacherVO, Void, String> {
             String str;
 
             // 접속할 서버 주소 (이클립스에서 android.jsp 실행시 웹브라우저 주소)
-            URL url = new URL("http://70.12.115.53:8080/sendmsg/Rteacherlogin.jsp");
+            //URL url = new URL("http://70.12.115.53:8080/sendmsg/Rteacherlogin.jsp");
+            URL url = new URL("http://70.12.115.78:80/safebus/teacher/add.do");
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
@@ -50,9 +51,12 @@ public class RTeacherActivity extends AsyncTask<RTeacherVO, Void, String> {
                     buffer.append(str);
                 }
                 receiveMsg = buffer.toString();
+
+                Log.i("error","addteacher 성공");
             } else {
                 // 통신 실패
                 Log.i("error",receiveMsg);
+                Log.i("error","addteacher 실패");
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
