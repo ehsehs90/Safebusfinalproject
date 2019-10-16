@@ -1,5 +1,7 @@
 package com.example.safebusfinalproject;
 
+import android.content.ComponentName;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -54,6 +56,15 @@ public class RParentsActivity extends AsyncTask<RParentsVO, Void, String> {
                 receiveMsg = buffer.toString();
                 Log.i("error",receiveMsg);
                 Log.i("error","addparetns 성공");
+
+                //Intent i = new Intent();
+                //ComponentName cname = new ComponentName("com.example.safebusfinalproject",
+                 //       "com.example.safebusfinalproject.LoginActivity");
+                //i.setComponent(cname);
+
+                //startActivity(i);
+
+
             } else {
                 // 통신 실패
                 Log.i("error",receiveMsg);

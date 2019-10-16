@@ -28,6 +28,12 @@ import java.sql.Struct;
 
 public class NewClientActivity extends AppCompatActivity {
 
+
+
+
+
+
+
     private String msgFromServer;
     private String result;
     TextView humidity, temperature, location, velocity;

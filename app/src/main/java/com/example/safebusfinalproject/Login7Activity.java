@@ -184,10 +184,19 @@ public class Login7Activity extends AppCompatActivity {
 
                             Intent intent = new Intent(Login7Activity.this, MainActivity.class);
                             startActivity(intent);
+
                         }
                         else {
                             Toast.makeText(getApplicationContext(), resultstr,
                                     Toast.LENGTH_SHORT).show();
+
+                            Intent i = new Intent();
+                            ComponentName cname = new ComponentName("com.example.safebusfinalproject",
+                                    "com.example.safebusfinalproject.LoginActivity");
+                            i.setComponent(cname);
+
+                            startActivity(i);
+
                         }
 
                     } else if (chk.equals("보육교사")) {
@@ -208,10 +217,19 @@ public class Login7Activity extends AppCompatActivity {
 
                             Intent intent = new Intent(Login7Activity.this, MainActivity.class);
                             startActivity(intent);
+
                         }
                         else {
                             Toast.makeText(getApplicationContext(), resultstr2,
                                     Toast.LENGTH_SHORT).show();
+
+                            Intent i = new Intent();
+                            ComponentName cname = new ComponentName("com.example.safebusfinalproject",
+                                    "com.example.safebusfinalproject.LoginActivity");
+                            i.setComponent(cname);
+
+                            startActivity(i);
+
                         }
 
                     } else if (chk.equals("운전기사")) {
@@ -255,6 +273,14 @@ public class Login7Activity extends AppCompatActivity {
                         else {
                             Toast.makeText(getApplicationContext(), resultstr3,
                                     Toast.LENGTH_SHORT).show();
+
+                            Intent i = new Intent();
+                            ComponentName cname = new ComponentName("com.example.safebusfinalproject",
+                                    "com.example.safebusfinalproject.LoginActivity");
+                            i.setComponent(cname);
+
+                            startActivity(i);
+
                         }
 
                     }

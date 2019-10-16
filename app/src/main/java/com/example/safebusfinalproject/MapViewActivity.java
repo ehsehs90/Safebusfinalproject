@@ -651,6 +651,47 @@ public class MapViewActivity extends AppCompatActivity {
 
         Tmap.addView(tMapView);
 
+        // 메세지
+        final Button messageBtn = findViewById(R.id.messageBtn);
+        messageBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent();
+                ComponentName cname = new ComponentName("com.example.safebusfinalproject",
+                        "com.example.safebusfinalproject.SendMSGActivity");
+                i.setComponent(cname);
+
+                startActivity(i);
+            }
+        });
+
+        // 환경설정
+        final Button settingBtn = findViewById(R.id.settingBtn);
+        settingBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent();
+                ComponentName cname = new ComponentName("com.example.safebusfinalproject",
+                        "com.example.safebusfinalproject.ActSettings");
+                i.setComponent(cname);
+
+                startActivity(i);
+            }
+        });
+
+        // 좌석
+        final Button seatBtn = findViewById(R.id.seatBtn);
+        seatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent();
+                ComponentName cname = new ComponentName("com.example.safebusfinalproject",
+                        "com.example.safebusfinalproject.SeatActivity");
+                i.setComponent(cname);
+
+                startActivity(i);
+            }
+        });
 
         final Button LogoutBtn = findViewById(R.id.LogoutBtn);
         LogoutBtn.setOnClickListener(new View.OnClickListener() {
