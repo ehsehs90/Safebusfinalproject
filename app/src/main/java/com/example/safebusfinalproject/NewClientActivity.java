@@ -32,6 +32,13 @@ public class NewClientActivity extends AppCompatActivity {
     private String result;
     TextView humidity, temperature, location, velocity;
     TCPclient tp = null;
+    int flag = 0;
+    long starttime, endtime;
+    String humiditystr = null;
+    String temperaturestr = null;
+    String locationstr = null;
+    String velocitystr = null;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,16 +61,14 @@ public class NewClientActivity extends AppCompatActivity {
                         final String serverIP = "70.12.115.53";
                         final String serverPort = "8090";
 
-                        while(true) {
-                            tp.notifyAll();
-                            // 에디터 창에 입력된 데이터를 서버에 보낸다.
+                        //System.out.println("걸린 시간: " + starttime + " 밀리초");
+
                             tp = new TCPclient(carNum);
                             result = tp.execute(serverIP, serverPort).get();
                             Log.i("result", result);
                             // 서버로부터 받은 데이터를 출력한다.
                             Toast.makeText(getApplicationContext(), msgFromServer, Toast.LENGTH_LONG).show();
-                            tp.wait(5000);
-                        }
+
                 }catch (Exception e){
                     e.printStackTrace();
                 }
@@ -97,7 +102,14 @@ public class NewClientActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         try {
+
+            PrintWriter out = new PrintWriter(new BufferedWriter
+                    (new OutputStreamWriter(tp.socket.getOutputStream())), true);
+            out.println("EXIT!");
+            Log.d("MY_TAG", "C: Send Message To Server -> EXIT!");
+
             tp.socket.close();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -120,7 +132,13 @@ public class NewClientActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
+
             super.onPreExecute();
+
+            humidity.setText(humiditystr);
+            temperature.setText(temperaturestr);
+            location.setText(locationstr);
+            velocity.setText(velocitystr);
         }
 
         @Override
@@ -150,27 +168,28 @@ public class NewClientActivity extends AppCompatActivity {
                     // 서버로부터 데이터를 받는다.
                     // *********************************************************
                     a = "여기2";
-                    Log.i("내용?",socket.getInputStream().toString());
-                    BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                    msgFromServer = in.readLine();
-                    a = "여기3";
-                    Log.d("MY_TAG", "C: Receive Message From Server -> " + msgFromServer);
 
-                    JSONArray jsonArray = new JSONArray(msgFromServer);
+                            Log.i("내용?", socket.getInputStream().toString());
+                            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                            msgFromServer = in.readLine();
+                            a = "여기3";
+                            Log.d("MY_TAG", "C: Receive Message From Server -> " + msgFromServer);
 
-                    for(int i=0;i<jsonArray.length();i++){
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        String humiditystr = jsonObject.getString("B1");
-                        String temperaturestr = jsonObject.getString("B2");
-                        String locationstr = jsonObject.getString("B3") + ", " + jsonObject.getString("B4");
-                        String velocitystr = jsonObject.getString("B5");
+                            JSONArray jsonArray = new JSONArray(msgFromServer);
 
-                        humidity.setText(humiditystr);
-                        temperature.setText(temperaturestr);
-                        location.setText(locationstr);
-                        velocity.setText(velocitystr);
-                        //driverimg.setImageResource(driverimgstr);
-                    }
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                humiditystr = jsonObject.getString("B1");
+                                temperaturestr = jsonObject.getString("B2");
+                                locationstr = jsonObject.getString("B3") + ", " + jsonObject.getString("B4");
+                                velocitystr = jsonObject.getString("B5");
+
+//                                humidity.setText(humiditystr+i);
+//                                temperature.setText(temperaturestr);
+//                                location.setText(locationstr);
+//                                velocity.setText(velocitystr);
+                                //driverimg.setImageResource(driverimgstr);
+                            }
 
 
                 } catch (Exception e) {

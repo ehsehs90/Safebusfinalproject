@@ -1,61 +1,229 @@
 package com.example.safebusfinalproject;
 
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.safebusfinalproject.R;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
-import java.io.IOException;
+import java.io.BufferedWriter;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.Socket;
+import java.sql.Struct;
 
 public class NewClient2Activity extends AppCompatActivity {
 
-    TextView textview;
-    Button btn,closebtn;
-    Socket socket;
-    BufferedReader br;
-    PrintWriter out;
+    private String msgFromServer;
+    private String result;
+    private String result2;
+    TextView humidity, temperature, location, velocity;
+    TCPclient tp = null;
+    TCPclientR tp2 = null;
+    int flag = 0;
+    long starttime, endtime;
+    String humiditystr = null;
+    String temperaturestr = null;
+    String locationstr = null;
+    String velocitystr = null;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_newclient);
+        setContentView(R.layout.activity_businfo);
 
-        final Button btn = (Button) findViewById(R.id.Button01); // 보내기버튼
+        final Button btn = (Button) findViewById(R.id.infoBtn);
+        humidity = (TextView)findViewById(R.id.humidity);
+        temperature = (TextView)findViewById(R.id.temperature);
+        location = (TextView)findViewById(R.id.location);
+        velocity = (TextView)findViewById(R.id.velocity);
+
+        Intent intent = getIntent(); /*데이터 수신*/
+        final String carNum = intent.getStringExtra("carNum");
 
         btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // 버튼에서 Action이 발생(클릭)했을 때 호출!
-                // 접속버튼
+
                 try {
-                    // 클라이언트는 버튼을 누르면 서버쪽에 Socket 접속을 시도.
-                    // 만약에 접속에 성공하면 socket객체를 하나 획득.
-                    socket = new Socket("70.12.115.53", 8090);
-                    // Stream 생성
-                    InputStreamReader isr =
-                            new InputStreamReader(socket.getInputStream());
+                    final String serverIP = "70.12.115.53";
+                    final String serverPort = "8090";
 
-                    br = new BufferedReader(isr);  // 쓰기 ?? 반대 아님?
+                    //System.out.println("걸린 시간: " + starttime + " 밀리초");
 
-                    String str = br.readLine();
-                    Log.i("strdd",str);
+                    tp = new TCPclient(carNum);
+                    result = tp.execute(serverIP, serverPort).get();
+                    Log.i("result", result);
+                    // 서버로부터 받은 데이터를 출력한다.
 
-                    out = new PrintWriter(socket.getOutputStream()); // 읽기
-                    Log.i("outout",out.toString());
+                    tp2 = new TCPclientR();
+                    result2 = tp2.execute(serverIP, serverPort).get();
 
-                    Log.i("msg11","Echo 서버 접속 성공!!");
 
-                } catch (Exception e) {
-                    System.out.println("1: " + e);
+                    Toast.makeText(getApplicationContext(), msgFromServer, Toast.LENGTH_LONG).show();
+
+                }catch (Exception e){
+                    e.printStackTrace();
                 }
-
             }
         });
+
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        try {
+
+            PrintWriter out = new PrintWriter(new BufferedWriter
+                    (new OutputStreamWriter(tp.socket.getOutputStream())), true);
+            out.println("EXIT!");
+            Log.d("MY_TAG", "C: Send Message To Server -> EXIT!");
+
+            tp.socket.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private class TCPclient extends AsyncTask<String, Void, String> {
+
+        private String msgToServer;
+        Socket socket;
+
+        public TCPclient(String _msg) {
+            this.msgToServer = _msg;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            Log.i("AsyncTask", "onPreExecute");
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... str) {
+
+            String a = null;
+
+            try {
+                // *********************************************************
+                // 소켓을 생성하고, 서버에 접속한다.
+                // *********************************************************
+                InetAddress serverAddr = InetAddress.getByName(str[0]);
+                socket = new Socket(serverAddr, Integer.parseInt(str[1]));
+
+                Log.d("MY_TAG", "C: Connect");
+                try {
+                    // *********************************************************
+                    // 서버에 데이터를 보낸다.
+                    // *********************************************************
+                    PrintWriter out = new PrintWriter(new BufferedWriter
+                            (new OutputStreamWriter(socket.getOutputStream())), true);
+                    out.println(msgToServer);
+                    a = msgToServer;
+                    Log.d("MY_TAG", "C: Send Message To Server -> " + msgToServer);
+
+                } catch (Exception e) {
+                    Log.e("MY_TAG", "C: Error1", e);
+                }
+            } catch (Exception e) {
+                Log.e("MY_TAG", "C: Error2", e);
+            }
+
+            return a;
+        }
+    }
+
+    private class TCPclientR extends AsyncTask<String, Void, String> {
+
+        Socket socket;
+
+        @Override
+        protected void onPreExecute() {
+            Log.i("AsyncTask", "onPreExecute");
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            super.onPreExecute();
+
+            humidity.setText(humiditystr);
+            temperature.setText(temperaturestr);
+            location.setText(locationstr);
+            velocity.setText(velocitystr);
+        }
+
+        @Override
+        protected String doInBackground(String... str) {
+
+            String a = null;
+
+            try {
+                // *********************************************************
+                // 소켓을 생성하고, 서버에 접속한다.
+                // *********************************************************
+                InetAddress serverAddr = InetAddress.getByName(str[0]);
+                socket = new Socket(serverAddr, Integer.parseInt(str[1]));
+
+                Log.d("MY_TAG", "C: Connect");
+                try {
+                    // *********************************************************
+                    // 서버로부터 데이터를 받는다.
+                    // *********************************************************
+                    a = "여기2";
+                    while(true) {
+                        if (socket.getInputStream() != null) {
+                            Log.i("내용?", socket.getInputStream().toString());
+                            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                            msgFromServer = in.readLine();
+                            a = "여기3";
+                            Log.d("MY_TAG", "C: Receive Message From Server -> " + msgFromServer);
+
+                            JSONArray jsonArray = new JSONArray(msgFromServer);
+
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                humiditystr = jsonObject.getString("B1");
+                                temperaturestr = jsonObject.getString("B2");
+                                locationstr = jsonObject.getString("B3") + ", " + jsonObject.getString("B4");
+                                velocitystr = jsonObject.getString("B5");
+                            }
+
+                        }
+                        else
+                            break;
+                    }
+
+                } catch (Exception e) {
+                    Log.e("MY_TAG", "C: Error1", e);
+                }
+            } catch (Exception e) {
+                Log.e("MY_TAG", "C: Error2", e);
+            }
+            return a;
+        }
+    }
+
 }
