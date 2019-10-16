@@ -564,7 +564,7 @@ public class MapViewActivity extends AppCompatActivity {
         businfoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent goBusInfo = new Intent(MapViewActivity.this, NewClientActivity.class);
+                Intent goBusInfo = new Intent(MapViewActivity.this, NewClient2Activity.class);
                 //Intent goBusInfo = new Intent();
                 goBusInfo.putExtra("carNum", carNum);
                 startActivity(goBusInfo);
