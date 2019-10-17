@@ -268,14 +268,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="여기에 뭐가 나옴"
-            android:visibility="visible"/>
+            android:visibility="invisible"/>
 
         <Button
             android:id="@+id/contactBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="사진찍기"
-            android:visibility="visible" />
+            android:visibility="invisible" />
 
     </LinearLayout>
 </ScrollView>

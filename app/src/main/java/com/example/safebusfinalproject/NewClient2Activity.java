@@ -143,8 +143,8 @@ public class NewClient2Activity extends AppCompatActivity {
             Log.i("proup", strings[2]);
             Log.i("proup", strings[3]);
 
-            humidity.setText(humiditystr);
-            temperature.setText(temperaturestr);
+            humidity.setText(humiditystr + " %");
+            temperature.setText(temperaturestr + " ℃");
             location.setText(locationstr);
             velocity.setText(velocitystr);
 
@@ -187,7 +187,7 @@ public class NewClient2Activity extends AppCompatActivity {
 
 
                     synchronized (this) {
-                        for (int j = 0; j < 2; j++) {
+                        for (int j = 0; j < 1; j++) {
 
                             Log.i("내용?", socket.getInputStream().toString());
                             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -201,7 +201,7 @@ public class NewClient2Activity extends AppCompatActivity {
 ////                        for (int i = 0; i < jsonArray.length(); i++) {
 
                             JSONObject jsonObject = jsonArray.getJSONObject(0);
-                            humiditystr = jsonObject.getString("B1") + j;
+                            humiditystr = jsonObject.getString("B1");
                             temperaturestr = jsonObject.getString("B2");
                             locationstr = jsonObject.getString("B3") + ", " + jsonObject.getString("B4");
                             velocitystr = jsonObject.getString("B5");

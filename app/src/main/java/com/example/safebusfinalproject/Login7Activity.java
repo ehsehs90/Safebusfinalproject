@@ -345,6 +345,7 @@ public class Login7Activity extends AppCompatActivity {
                     address.setVisibility(View.INVISIBLE);
                     license.setVisibility(View.INVISIBLE);
                     carNum.setVisibility(View.INVISIBLE);
+                    goBtn.setVisibility(View.INVISIBLE);
                 } else if (select.isChecked() == true && struser.equals(userjob[2])) { // 학부모
                     //Log.i("info3","else찍힘;");
 
@@ -491,6 +492,7 @@ public class Login7Activity extends AppCompatActivity {
                     address.setVisibility(View.VISIBLE);
                     license.setVisibility(View.INVISIBLE);
                     carNum.setVisibility(View.INVISIBLE);
+                    goBtn.setVisibility(View.INVISIBLE);
                 }
 
             }
