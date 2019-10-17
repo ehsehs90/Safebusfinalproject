@@ -41,7 +41,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class PredictImageActivity extends AppCompatActivity {
+public class ImageActivity extends AppCompatActivity {
     private String imagePath;
     private ImageView imageView;
     private Button takePhoto_btn;
@@ -83,7 +83,7 @@ public class PredictImageActivity extends AppCompatActivity {
                         Log.i("CAMERA", "카메라 실행 끝");
                     }
                 } else {
-                    Toast.makeText(PredictImageActivity.this, "카메라 앱이 없습니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ImageActivity.this, "카메라 앱이 없습니다.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -104,57 +104,9 @@ public class PredictImageActivity extends AppCompatActivity {
 
 
 
-//                    Intent intent2 = new Intent(getApplicationContext(), Login5Activity.class);
-//                    //키 값으로 String이라는 이름을 지정하며 , 두번째 인자로 전송할 데이터 변수 지정   .putExtra("key",value);
-//                    intent2.putExtra("String",realPath);
-//
-//                    //키 값으로 ArrayList라는 이름으로 지정, 전송할 데이터 변수 지정 .putStringArrayListExtra("KEY",value);
-//                    //intent.putStringArrayListExtra("ArrayList", ArrData);
-//
-//                    //IntentPage Activity에 데이터를 전달.
-//                    Log.i("망했다",realPath);
-//                    startActivity(intent2);  //인텐트를 시작한다.
-
-
                 }
             }
         });
-//
-//        doPredict_btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(),IntentPage.class);   //첫번째 인자 나의 클래스명, 두번째 인자 이동할 클래스명
-//
-//                //키 값으로 String이라는 이름을 지정하며 , 두번째 인자로 전송할 데이터 변수 지정   .putExtra("key",value);
-//                intent.putExtra("String",Data);
-//
-//                //키 값으로 ArrayList라는 이름으로 지정, 전송할 데이터 변수 지정 .putStringArrayListExtra("KEY",value);
-//                intent.putStringArrayListExtra("ArrayList", ArrData);
-//
-//                //IntentPage Activity에 데이터를 전달.
-//                startActivity(intent);  //인텐트를 시작한다.
-//            }
-//        });
-//        doPredict_btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), Login5Activity.class);   //첫번째 인자 나의 클래스명, 두번째 인자 이동할 클래스명
-//
-//                //키 값으로 String이라는 이름을 지정하며 , 두번째 인자로 전송할 데이터 변수 지정   .putExtra("key",value);
-//                intent.putExtra("String",fileName);
-//
-//                //키 값으로 ArrayList라는 이름으로 지정, 전송할 데이터 변수 지정 .putStringArrayListExtra("KEY",value);
-//                //intent.putStringArrayListExtra("ArrayList", ArrData);
-//
-//                //IntentPage Activity에 데이터를 전달.
-//                Log.i("망했다",fileName);
-//                startActivity(intent);  //인텐트를 시작한다.
-//
-//            }
-//        });
-//
-//
-
 
     }
 
@@ -289,7 +241,6 @@ public class PredictImageActivity extends AppCompatActivity {
                     return 270;
             }
         }
-
         return 0;
     }
     @Override

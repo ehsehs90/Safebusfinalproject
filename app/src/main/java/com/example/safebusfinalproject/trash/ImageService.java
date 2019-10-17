@@ -15,12 +15,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
-public class PredictImageService extends Service {
-
-
+public class ImageService extends Service {
     private String line;
 
-    public PredictImageService() {
+    public ImageService() {
     }
 
     @Override
@@ -60,7 +58,7 @@ public class PredictImageService extends Service {
             // 로직처리가 진행! -> Activity에게
             // 전달해야 하는 최종 결과 데이터
             Intent resultIntent = new Intent(getApplicationContext(),
-                    PredictImageActivity.class);
+                    ImageActivity.class);
             resultIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             resultIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             resultIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -169,20 +167,7 @@ public class PredictImageService extends Service {
                /// Log.i("Predict","22");
 
                 dos.flush(); // finish upload...
-//                if (conn.getResponseCode() == 200) {
-//                    InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");
-//                    BufferedReader reader = new BufferedReader(tmp);
-//                    StringBuffer stringBuffer = new StringBuffer();
-//
-//                  //  Log.i("Predict", "SISISI");
-//                    while ((line = reader.readLine()) != null) {
-//                        stringBuffer.append(line);
-//                        Log.i("넘어온다고?" ,line);
-//                    }
-//                    line = stringBuffer.toString();
-//                }else{
-//                    Log.i("Predict", "안들어갓슈");
-//                }
+
                 mFileInputStream.close();
                 dos.close();
                 Log.i("Predict", "HTTPTPTPTP");

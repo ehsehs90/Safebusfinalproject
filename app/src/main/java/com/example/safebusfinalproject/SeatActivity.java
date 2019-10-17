@@ -49,8 +49,8 @@ public class SeatActivity extends AppCompatActivity {
 
                     for(int i=0;i<jsonArray.length();i++){
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        String button01str = jsonObject.getString("B1");
-                        String button13str = jsonObject.getString("B2");
+                        String button01str = jsonObject.getString("감자");
+                        String button13str = jsonObject.getString("고구마");
 
                         button01.setText(button01str);
                         button13.setText(button13str);

@@ -30,7 +30,7 @@
         <activity android:name=".Login5Activity" />
         <activity android:name=".Login6Activity" />
         <activity android:name=".Login7Activity" />
-        <activity android:name=".trash.PredictImageActivity" />
+        <activity android:name=".trash.ImageActivity" />
         <activity android:name=".BusinfoActivity2" />
         <activity android:name=".NewClientActivity"/>
         <activity android:name=".NewClient2Activity"/>
@@ -48,7 +48,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.safebusfinalproject.trash.PredictImageActivity"
+            android:authorities="com.example.safebusfinalproject.trash.ImageActivity"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -57,7 +57,7 @@
         </provider>
 
         <service
-            android:name=".trash.PredictImageService"
+            android:name=".trash.ImageService"
             android:enabled="true"
             android:exported="true" />
     </application>

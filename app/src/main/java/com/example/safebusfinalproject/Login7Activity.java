@@ -119,7 +119,7 @@ public class Login7Activity extends AppCompatActivity {
 
                 Intent i = new Intent();
                 ComponentName cname = new ComponentName("com.example.safebusfinalproject",
-                        "com.example.safebusfinalproject.trash.PredictImageActivity");
+                        "com.example.safebusfinalproject.trash.ImageActivity");
                 i.setComponent(cname);
                 startActivityForResult(i, 3000);
 
