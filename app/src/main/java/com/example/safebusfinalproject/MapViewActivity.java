@@ -352,7 +352,9 @@ public class MapViewActivity extends AppCompatActivity {
             Calendar cal = Calendar.getInstance();
             cal.setTime(date);
             starttime = formatter.format(date);*/
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
+            //SimpleDateFormat formatter = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
+            SimpleDateFormat formatter = new SimpleDateFormat("MM월 dd일 HH시 mm분");
+
             final String startTime = formatter.format(starttime);
 
             //2. 도착시간
@@ -582,9 +584,7 @@ public class MapViewActivity extends AppCompatActivity {
         Tmap = (LinearLayout) findViewById(R.id.tmap_view);
         tMapView = new TMapView(this);
 
-        tMapView.setSKTMapApiKey("b7dc6f07-a787-4f42-9d8d-c42b9eee47a1");
-
-        //tMapView.setSKTMapApiKey("87e1a7c5-b8fc-4078-948b-c3c9f00927e1");
+        tMapView.setSKTMapApiKey("[token]");
         tMapView.setCenterPoint(127.036174, 37.500138); //강남파이낸스 센터
 
         // 강남파이낸스 근처에 있으면 유치원에서 출발, 아니면 도착점

@@ -66,10 +66,9 @@ public class RouteOptimization {
             conn.setDoInput(true);
             conn.setRequestMethod("POST"); // 보내는 타입
             conn.setRequestProperty("Accept", "application/json");
-            conn.setRequestProperty("appKey","b7dc6f07-a787-4f42-9d8d-c42b9eee47a1");
+            conn.setRequestProperty("appKey","[token]");
             conn.setRequestProperty("Accept-Language","ko");
             conn.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
-
 
             String body = "endX="+endX
                     +"&endY="+endY
@@ -80,20 +79,14 @@ public class RouteOptimization {
                     +"&tollgateFareOption="+tollgateFareOption
                     +"&roadType="+roadType
                     +"&directionOption="+directionOption
-                    //+"&endPoiId="+endPoiId
-                    //+"&gpsTime="+gpsTime
                     +"&angle="+angle
                     +"&speed="+speed
                     +"&uncetaintyP="+uncetaintyP
-                    //+"&uncetaintyA="+uncetaintyA
-                    //+"&uncetaintyAP="+uncetaintyAP
-                    //+"&camOption="+camOption
                     +"&carType="+carType
                     +"&startName="+startName
                     +"&endName="+endName
                     +"&searchOption="+searchOption
                     +"&totalValue="+totalValue;
-
 
             // 전송
             OutputStream os = conn.getOutputStream();
@@ -103,8 +96,6 @@ public class RouteOptimization {
                 Log.d("connection", body);
                 os.write(body.getBytes("UTF-8"));
                 os.flush();
-
-                // 응답
 
                 // 200 성공코드 // 400 문법에러
                 if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {

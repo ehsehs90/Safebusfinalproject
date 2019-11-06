@@ -57,8 +57,7 @@ public class RouteOptimizationVia {
             conn.setDoInput(true);
             conn.setRequestMethod("POST"); // 보내는 타입
             conn.setRequestProperty("Accept", "application/json");
-            conn.setRequestProperty("appKey","b7dc6f07-a787-4f42-9d8d-c42b9eee47a1");
-            //conn.setRequestProperty("appKey","87e1a7c5-b8fc-4078-948b-c3c9f00927e1");
+            conn.setRequestProperty("appKey","[token]");
             conn.setRequestProperty("Content-type","application/json");
 
 
@@ -68,8 +67,6 @@ public class RouteOptimizationVia {
             try {
                 os.write(sendJsonObj.toString().getBytes("UTF-8"));
                 os.flush();
-
-                // 응답
 
                 // 200 성공코드 // 400 문법에러
                 if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
@@ -81,12 +78,9 @@ public class RouteOptimizationVia {
                     Log.d("connection",conn.getResponseCode()+"");
                 }
 
-
                 // tmap server에서 받아온 경로탐색 json파일 parsing
                 JSONObject jsonObject = readJsonFromUrl(conn);
-                Log.d("ggggggggg",jsonObject.toString());
                 jsonList = jsonListParser(jsonObject,state);
-                Log.d("ggggggggg",jsonList.toString());
 
                 //시작점 추가
                 jsonList.get(0).put("longitude", startPoint.getViaX());
@@ -98,7 +92,6 @@ public class RouteOptimizationVia {
                 for (HashMap item: jsonList ) {
                     Log.d("aaaaaaaa", item.get("viaPointName").toString()+" : "+item.get("viaDetailAddress").toString());
                 }
-
                 // 닫기
                 os.close();
                 //br.close();
