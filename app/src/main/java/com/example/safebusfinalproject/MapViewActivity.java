@@ -584,7 +584,7 @@ public class MapViewActivity extends AppCompatActivity {
         Tmap = (LinearLayout) findViewById(R.id.tmap_view);
         tMapView = new TMapView(this);
 
-        tMapView.setSKTMapApiKey("[token]");
+        tMapView.setSKTMapApiKey("39b46490e6b56fa0382ead666ea1a95d921b9915");
         tMapView.setCenterPoint(127.036174, 37.500138); //강남파이낸스 센터
 
         // 강남파이낸스 근처에 있으면 유치원에서 출발, 아니면 도착점

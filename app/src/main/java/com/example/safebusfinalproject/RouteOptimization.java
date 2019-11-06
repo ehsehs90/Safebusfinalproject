@@ -66,7 +66,7 @@ public class RouteOptimization {
             conn.setDoInput(true);
             conn.setRequestMethod("POST"); // 보내는 타입
             conn.setRequestProperty("Accept", "application/json");
-            conn.setRequestProperty("appKey","[token]");
+            conn.setRequestProperty("appKey","39b46490e6b56fa0382ead666ea1a95d921b9915");
             conn.setRequestProperty("Accept-Language","ko");
             conn.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
 
